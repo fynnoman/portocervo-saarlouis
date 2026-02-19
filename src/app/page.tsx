@@ -8,6 +8,7 @@ import About from '@/components/About';
 import OpeningHours from '@/components/OpeningHours';
 import Events from '@/components/Events';
 import LunchMenu from '@/components/LunchMenu';
+import LiveEvents from '@/components/LiveEvents';
 import ReservationForm from '@/components/ReservationForm';
 import Map from '@/components/Map';
 import Footer from '@/components/Footer';
@@ -17,6 +18,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100">
       <Hero />
       <Navbar />
+      <ReservationForm />
       <RestaurantImage />
       <Divider />
       <Experience />
@@ -25,7 +27,7 @@ export default function Home() {
       <OpeningHours />
       <LunchMenu />
       <Events />
-      <ReservationForm />
+      <LiveEvents />
       <Map />
       <Footer />
     </div>

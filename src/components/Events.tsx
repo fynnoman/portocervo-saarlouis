@@ -19,6 +19,9 @@ export default function Events() {
         }}
       />
       
+      {/* Gradient overlays to fade top and bottom */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-100 via-transparent to-gray-100 z-0"></div>
+      
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

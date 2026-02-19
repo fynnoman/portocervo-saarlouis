@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -9,6 +10,9 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+
+# reserver-v2 subdirectory
+reserver-v2/
 
 # testing
 /coverage
