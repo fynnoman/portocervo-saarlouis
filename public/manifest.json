@@ -1,0 +1,19 @@
+{
+  "name": "Restaurant Portocervo Saarlouis",
+  "short_name": "Portocervo",
+  "description": "Italienisches Restaurant Portocervo in Saarlouis – Authentische italienische Küche, Pizza, Pasta & mehr.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#c9a961",
+  "orientation": "portrait",
+  "lang": "de",
+  "categories": ["food", "restaurant"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

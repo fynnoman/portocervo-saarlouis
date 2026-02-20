@@ -1,0 +1,23 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.portocervo-saarlouis.de/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /_next/
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*.jpeg$
+Allow: /*.png$

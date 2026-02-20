@@ -1,34 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.portocervo-saarlouis.de/</loc>
-    <lastmod>2026-02-11</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.portocervo-saarlouis.de/68A7E866-182F-4531-9864-52187EC82259.jpeg</image:loc>
+      <image:title>Restaurant Portocervo Saarlouis</image:title>
+      <image:caption>Italienisches Restaurant Portocervo in Saarlouis</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.portocervo-saarlouis.de/#restaurant-image</loc>
-    <lastmod>2026-02-11</lastmod>
+    <loc>https://www.portocervo-saarlouis.de/#reservation</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.portocervo-saarlouis.de/#experience</loc>
-    <lastmod>2026-02-11</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.portocervo-saarlouis.de/#services</loc>
-    <lastmod>2026-02-11</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.portocervo-saarlouis.de/#about</loc>
-    <lastmod>2026-02-11</lastmod>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.portocervo-saarlouis.de/#opening-hours</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.portocervo-saarlouis.de/#lunch-menu</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.portocervo-saarlouis.de/#events</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.portocervo-saarlouis.de/#live-events</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.portocervo-saarlouis.de/#map</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.portocervo-saarlouis.de/#opening-hours</loc>

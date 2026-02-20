@@ -18,16 +18,18 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100">
       <Hero />
       <Navbar />
-      <ReservationForm />
-      <RestaurantImage />
-      <Divider />
-      <Experience />
-      <Services />
-      <About />
-      <OpeningHours />
-      <LunchMenu />
-      <Events />
-      <LiveEvents />
+      <main>
+        <ReservationForm />
+        <RestaurantImage />
+        <Divider />
+        <Experience />
+        <Services />
+        <About />
+        <OpeningHours />
+        <LunchMenu />
+        <Events />
+        <LiveEvents />
+      </main>
       <Map />
       <Footer />
     </div>

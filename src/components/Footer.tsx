@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -36,6 +37,11 @@ export default function Footer() {
                   06831 2747
                 </a>
               </p>
+              <p>
+                <a href="mailto:portocervo.saarlouis@gmail.com" className="hover:text-[#c9a961] transition-colors">
+                  portocervo.saarlouis@gmail.com
+                </a>
+              </p>
             </div>
           </motion.div>
 
@@ -61,7 +67,12 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm"
         >
-          <p>&copy; {currentYear} Portocervo Saarlouis. Alle Rechte vorbehalten.</p>
+          <p className="mb-3">&copy; {currentYear} Portocervo Saarlouis. Alle Rechte vorbehalten.</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/impressum" className="hover:text-[#c9a961] transition-colors">Impressum</Link>
+            <span>·</span>
+            <Link href="/datenschutz" className="hover:text-[#c9a961] transition-colors">Datenschutz</Link>
+          </div>
         </motion.div>
       </div>
     </footer>
