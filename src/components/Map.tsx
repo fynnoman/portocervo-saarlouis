@@ -1,11 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useConsent } from '@/components/CookieBanner';
 
 export default function Map() {
   const address = "Lothringer Str. 1, 66740 Saarlouis";
   const googleMapsUrl = "https://www.google.com/maps/place/Lothringer+Str.+1,+66740+Saarlouis";
   const embedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.7!2d6.7505!3d49.3145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b1b5e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sLothringer%20Str.%201%2C%2066740%20Saarlouis!5e0!3m2!1sde!2sde!4v1234567890";
+  const consent = useConsent();
 
   return (
     <section id="map" className="relative py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gray-100 overflow-hidden">
@@ -73,16 +75,37 @@ export default function Map() {
 
           {/* Map iframe */}
           <div className="relative rounded-sm overflow-hidden shadow-2xl h-[350px] md:h-[450px] lg:h-[500px]">
-            <iframe
-              src={embedUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Restaurant Portocervo Standort"
-            />
+            {consent === 'accepted' ? (
+              <iframe
+                src={embedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Restaurant Portocervo Standort"
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-200 flex flex-col items-center justify-center gap-4 px-6 text-center">
+                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <p className="text-gray-600 text-sm max-w-xs" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                  Google Maps wird erst nach Ihrer Zustimmung geladen.<br />
+                  Bitte akzeptieren Sie die Cookies unten auf der Seite.
+                </p>
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#c9a961] hover:underline"
+                  style={{ fontFamily: 'system-ui, sans-serif' }}
+                >
+                  Direkt in Google Maps öffnen →
+                </a>
+              </div>
+            )}
           </div>
         </motion.div>
 

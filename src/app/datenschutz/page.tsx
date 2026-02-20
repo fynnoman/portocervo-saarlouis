@@ -160,13 +160,17 @@ export default function Datenschutz() {
             <h3 className="text-lg font-medium text-gray-800 mb-2">Cookies</h3>
             <p>
               Unsere Website verwendet technisch notwendige Cookies, um die Funktionalität der Website
-              sicherzustellen. Dabei handelt es sich um kleine Textdateien, die Ihr Browser auf Ihrem Gerät
-              speichert. Diese Cookies enthalten keine personenbezogenen Daten. Rechtsgrundlage ist Art. 6
-              Abs. 1 lit. f DSGVO.
+              sicherzustellen (z. B. Speicherung Ihrer Cookie-Präferenzen). Weitere Cookies oder Tracker
+              werden <strong>nur nach Ihrer ausdrücklichen Einwilligung</strong> geladen. Externe Dienste
+              wie Google Maps und das Airtable-Reservierungsformular werden blockiert, bis Sie dem Laden
+              dieser Dienste zustimmen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)
+              bzw. Art. 6 Abs. 1 lit. f DSGVO für technisch notwendige Cookies.
             </p>
             <p className="mt-3">
-              Wir speichern Ihre Cookie-Präferenzen in einem Cookie namens „cookieConsent" mit einer
-              Laufzeit von 365 Tagen.
+              Wir speichern Ihre Cookie-Präferenzen im localStorage Ihres Browsers unter dem Schlüssel
+              „cookieConsent". Diese Information verbleibt lokal auf Ihrem Gerät und wird nicht an Server
+              übertragen. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie Ihren Browser-Speicher
+              leeren.
             </p>
 
             <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">Server-Log-Dateien</h3>
@@ -196,9 +200,13 @@ export default function Datenschutz() {
               gespeichert.
             </p>
             <p className="mt-3">
+              <strong>Das Airtable-Formular wird erst geladen, nachdem Sie Ihre Einwilligung erteilt haben.</strong>{" "}
+              Ohne Zustimmung werden keine Daten an Airtable übertragen.
+            </p>
+            <p className="mt-3">
               Airtable verarbeitet Ihre Daten in den USA. Die Übermittlung erfolgt auf Grundlage der
-              EU-Standardvertragsklauseln (Art. 46 DSGVO). Weitere Informationen finden Sie in der
-              Datenschutzerklärung von Airtable unter{" "}
+              EU-Standardvertragsklauseln (Art. 46 DSGVO) sowie Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
+              Weitere Informationen finden Sie in der Datenschutzerklärung von Airtable unter{" "}
               <a
                 href="https://www.airtable.com/privacy"
                 target="_blank"
@@ -208,11 +216,6 @@ export default function Datenschutz() {
                 https://www.airtable.com/privacy
               </a>
               .
-            </p>
-            <p className="mt-3">
-              Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Erfüllung
-              vorvertraglicher Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an
-              der Verwaltung von Reservierungen).
             </p>
             <p className="mt-3">
               Ihre Reservierungsdaten werden nach Abschluss des Restaurantbesuchs gelöscht, soweit keine
@@ -226,14 +229,16 @@ export default function Datenschutz() {
             <h3 className="text-lg font-medium text-gray-800 mb-2">Google Maps</h3>
             <p>
               Diese Website nutzt den Kartendienst Google Maps der Google Ireland Limited, Gordon House, Barrow
-              Street, Dublin 4, Irland. Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre
-              IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in
-              den USA übertragen und dort gespeichert.
+              Street, Dublin 4, Irland.{" "}
+              <strong>Google Maps wird erst nach Ihrer ausdrücklichen Einwilligung geladen.</strong>{" "}
+              Ohne Zustimmung wird kein Google-Script ausgeführt und keine Verbindung zu Google-Servern
+              hergestellt.
             </p>
             <p className="mt-3">
-              Google Maps wird eingebunden, um Ihnen die Anfahrt zu unserem Restaurant zu erleichtern.
-              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen zum Umgang mit
-              Nutzerdaten finden Sie in der Datenschutzerklärung von Google:{" "}
+              Nach Erteilung der Einwilligung ist es für die Nutzung der Kartenfunktion notwendig, Ihre
+              IP-Adresse zu übertragen. Diese Informationen werden in der Regel an Server von Google in
+              den USA übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Weitere
+              Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google:{" "}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
