@@ -34,7 +34,7 @@ export default function MenuSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
+              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left flex flex-col group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
             >
               <div className="w-10 h-10 mb-4 text-[#c9a961]">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,9 +42,18 @@ export default function MenuSection() {
                 </svg>
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">Mittagstisch</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
                 Täglich wechselnde Mittagsgerichte – schnell, frisch und zu fairen Preisen.
               </p>
+              <Link
+                href="/speisekarten#mittagstisch"
+                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow hover:shadow-lg self-start"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                Mittagstisch ansehen
+              </Link>
             </motion.div>
 
             <motion.div
@@ -52,7 +61,7 @@ export default function MenuSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
+              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left flex flex-col group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
             >
               <div className="w-10 h-10 mb-4 text-[#c9a961]">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,28 +69,20 @@ export default function MenuSection() {
                 </svg>
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">Speisekarte</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
                 Unsere vollständige Karte mit Pizza, Pasta, Fleisch- und Fischgerichten sowie Desserts.
               </p>
+              <Link
+                href="/speisekarten#speisekarte"
+                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow hover:shadow-lg self-start"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                Speisekarte ansehen
+              </Link>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Link
-              href="/speisekarten"
-              className="inline-flex items-center gap-3 bg-[#c9a961] hover:bg-[#b8963a] text-white px-8 py-4 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-              Speisekarten ansehen
-            </Link>
-          </motion.div>
         </motion.div>
       </div>
     </section>
