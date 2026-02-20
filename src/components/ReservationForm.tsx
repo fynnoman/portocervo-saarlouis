@@ -26,6 +26,18 @@ export default function ReservationForm() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mb-6 bg-[#fdf8ef] border border-[#c9a961]/30 rounded-xl px-5 py-4 text-sm text-gray-700 leading-relaxed"
+        >
+          <span className="font-medium text-gray-900">Bitte alle Felder ausfüllen.</span>{' '}
+          Name, Telefonnummer, E-Mail, Datum, Uhrzeit und Personenanzahl sind Pflichtfelder –
+          fehlt auch nur ein Eintrag, kann die Reservierungsanfrage nicht bearbeitet werden.
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="w-full"
         >
