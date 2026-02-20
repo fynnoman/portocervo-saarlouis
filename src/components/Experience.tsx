@@ -22,9 +22,10 @@ export default function Experience() {
         className="absolute bottom-0 right-1/4 w-1 h-32 bg-[#c9a961]"
       />
 
-      <div className="relative min-h-[50vh] md:min-h-[60vh]">
+      {/* Mobile: stack vertically. Desktop: side-by-side */}
+      <div className="flex flex-col md:flex-row md:min-h-[60vh]">
         {/* Left Side - Image with elegant frame */}
-        <div className="absolute inset-0 md:w-1/2 p-8 md:p-12 lg:p-16">
+        <div className="w-full md:w-1/2 h-64 sm:h-80 md:h-auto p-8 md:p-12 lg:p-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,7 +69,7 @@ export default function Experience() {
         </div>
 
         {/* Right Side - Content */}
-        <div className="relative md:ml-[50%] min-h-[50vh] md:min-h-[60vh] flex items-center px-6 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20">
+        <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-16 py-10 md:py-16 lg:py-20">
           <div className="max-w-xl">
             {/* Decorative Quote Mark */}
             <motion.div

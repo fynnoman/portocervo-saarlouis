@@ -50,7 +50,7 @@ export default function SpeisekartenClient() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+      <main className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 lg:py-16">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -66,7 +66,7 @@ export default function SpeisekartenClient() {
           </p>
 
           {/* Tab switcher */}
-          <div className="flex justify-center gap-3 mt-6">
+          <div className="flex flex-wrap justify-center gap-3 mt-6">
             {menus.map((m) => (
               <button
                 key={m.id}
@@ -100,7 +100,7 @@ export default function SpeisekartenClient() {
               className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col"
             >
               {/* PDF Viewer */}
-              <div className="w-full h-[500px] md:h-[650px] bg-gray-50">
+              <div className="w-full h-[400px] sm:h-[500px] md:h-[650px] bg-gray-50">
                 <iframe
                   src={`${menu.file}#toolbar=0&navpanes=0&scrollbar=0`}
                   className="w-full h-full"
@@ -109,7 +109,7 @@ export default function SpeisekartenClient() {
               </div>
 
               {/* Card Footer */}
-              <div className="p-6 border-t border-gray-100 flex items-center justify-between gap-4">
+              <div className="p-4 md:p-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
                 <div>
                   <h2 className="text-xl font-medium text-gray-900 mb-1">{menu.title}</h2>
                   <p className="text-gray-500 text-sm">{menu.description}</p>

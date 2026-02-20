@@ -59,7 +59,7 @@ export default function OpeningHours() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className={`flex justify-between items-center p-4 md:p-6 ${
+              className={`flex justify-between items-center p-3 md:p-6 gap-2 ${
                 index !== openingHours.length - 1 ? 'border-b border-gray-100' : ''
               } ${
                 item.hours === 'Geschlossen' ? 'bg-gray-50' : 'hover:bg-gray-50'
@@ -68,12 +68,12 @@ export default function OpeningHours() {
               {/* Hover accent line */}
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#c9a961] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center" />
               
-              <span className={`text-base md:text-lg lg:text-xl xl:text-2xl font-medium ${
+              <span className={`text-sm md:text-lg lg:text-xl font-medium ${
                 item.hours === 'Geschlossen' ? 'text-gray-400' : 'text-gray-900'
               }`}>
                 {item.day}
               </span>
-              <span className={`text-base md:text-lg lg:text-xl xl:text-2xl ${
+              <span className={`text-sm md:text-lg lg:text-xl text-right ${
                 item.hours === 'Geschlossen' ? 'text-gray-400' : 'text-gray-600'
               }`}>
                 {item.hours}

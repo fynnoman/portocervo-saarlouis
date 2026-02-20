@@ -105,30 +105,30 @@ export default function Events() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gray-50 p-8 rounded-sm border-l-4 border-[#c9a961] hover:shadow-lg transition-all duration-300 relative group overflow-hidden"
+            className="bg-gray-50 p-6 md:p-8 rounded-sm border-l-4 border-[#c9a961] hover:shadow-lg transition-all duration-300 relative group overflow-hidden"
           >
             {/* Subtle background pattern on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#c9a961]/0 to-[#c9a961]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
             <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 mb-4 md:mb-6">
                 Kontaktieren Sie uns
               </h3>
-              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-6">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6">
                 Für individuelle Anfragen und Planungen stehen wir Ihnen gerne zur Verfügung.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 <motion.a
                   href="tel:068312747"
                   whileHover={{ x: 5 }}
-                  className="flex items-center text-lg md:text-xl text-[#c9a961] hover:text-[#b89951] transition-colors font-medium"
+                  className="flex items-center text-base md:text-lg text-[#c9a961] hover:text-[#b89951] transition-colors font-medium"
                 >
                   <span className="mr-2">📞</span>
                   06831 2747
                 </motion.a>
                 <motion.p
                   whileHover={{ x: 5 }}
-                  className="flex items-start text-lg md:text-xl text-gray-700"
+                  className="flex items-start text-base md:text-lg text-gray-700"
                 >
                   <span className="mr-2">📍</span>
                   Lothringer Str. 1, 66740 Saarlouis

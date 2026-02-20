@@ -43,7 +43,7 @@ export default function Hero() {
               width={4000}
               height={4000}
               priority
-              className="w-[400px] h-[400px] md:w-[640px] md:h-[640px] lg:w-[800px] lg:h-[800px] xl:w-[960px] xl:h-[960px] object-contain"
+              className="w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] md:w-[560px] md:h-[560px] lg:w-[720px] lg:h-[720px] xl:w-[900px] xl:h-[900px] object-contain"
               style={{ filter: 'invert(1)' }}
             />
           </motion.div>

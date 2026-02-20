@@ -40,7 +40,7 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-4">
             Unsere Serviceoptionen
           </h2>
           <div className="w-16 h-px bg-[#c9a961] mx-auto"></div>
@@ -59,10 +59,10 @@ export default function Services() {
               {/* Decorative corner accents */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 border-t-2 border-l-2 border-[#c9a961] opacity-0 group-hover:opacity-30 transition-opacity duration-300 -translate-y-4" />
               
-              <h3 className="text-3xl md:text-4xl font-medium text-gray-900 mb-3">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 mb-3">
                 {service.title}
               </h3>
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
                 {service.description}
               </p>
               
