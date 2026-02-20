@@ -8,15 +8,12 @@ export default function RestaurantImage() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
-    '/68A7E866-182F-4531-9864-52187EC82259.jpeg',
-    '/6AE92497-B1FD-4998-BE03-EA2CA8C66CC7_1_105_c.jpeg',
-    '/02F7DCDA-A9F8-463E-985A-E0D9FD7E15A0_1_105_c.jpeg',
-    '/6DB5E1CD-2EA4-44FC-AB11-FF7347432EA1_1_105_c.jpeg',
+    '/2FA51187-BAAE-41F4-8A97-2381397F7325.jpeg',
+    '/C962BB62-838B-4A3D-8FFD-0C4142B7B563.jpeg',
+    '/CB84CBAC-E6CB-4FD3-B0CE-51D412FA2AF9_1_105_c.jpeg',
     '/597CB459-217A-4171-AB66-7D5696079126_1_105_c.jpeg',
-    '/DCFC96B7-9A74-4723-8B60-C7362473FBE0_1_105_c.jpeg',
-    '/E1221841-182B-4E47-A91D-F09D649F6AF8_1_105_c.jpeg',
-    '/F6BFF748-F85C-410C-A4CE-DEEACE507257.jpeg',
-    '/F9D3D711-BFB5-46E1-8B05-906A0467FFE0_1_105_c.jpeg',
+    '/38672E83-BCEE-43FB-A910-89C6B2FB0008_1_105_c.jpeg',
+    '/554794DF-3636-4A2D-856D-08360EE9F9C5.jpeg',
   ];
 
   const nextImage = () => {
@@ -32,22 +29,24 @@ export default function RestaurantImage() {
       <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="relative">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
-              className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-2xl"
-            >
-              <Image
-                src={images[currentIndex]}
-                alt={`Restaurant Portocervo ${currentIndex + 1}`}
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </motion.div>
+            {images[currentIndex] && (
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+                className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-2xl"
+              >
+                <Image
+                  src={images[currentIndex]}
+                  alt={`Restaurant Portocervo ${currentIndex + 1}`}
+                  fill
+                  className="object-cover"
+                  quality={90}
+                />
+              </motion.div>
+            )}
           </AnimatePresence>
 
           {/* Navigation Buttons */}

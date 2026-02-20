@@ -55,7 +55,7 @@ export default function Experience() {
             {/* Image */}
             <div className="relative w-full h-full overflow-hidden rounded-sm shadow-2xl">
               <Image
-                src="/96DF95DE-5093-406C-99FE-1C45D0B3DDCE.jpeg"
+                src="/4CA6D974-904A-4932-9292-184FFF7A6D10_4_5005_c.jpeg"
                 alt="Italienische Küche"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
