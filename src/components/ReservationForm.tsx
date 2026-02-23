@@ -27,11 +27,24 @@ export default function ReservationForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mb-6 bg-[#fdf8ef] border border-[#c9a961]/30 rounded-xl px-5 py-4 text-sm text-gray-700 leading-relaxed"
+          className="mb-8 bg-[#fdf8ef] border-2 border-[#c9a961]/40 rounded-xl px-6 md:px-8 py-5 md:py-6 text-center"
         >
-          <span className="font-medium text-gray-900">Bitte alle Felder ausfüllen.</span>{' '}
-          Name, Telefonnummer, E-Mail, Datum, Uhrzeit und Personenanzahl sind Pflichtfelder –
-          fehlt auch nur ein Eintrag, kann die Reservierungsanfrage nicht bearbeitet werden.
+          <p className="text-base md:text-lg lg:text-xl font-medium text-gray-900 mb-3">
+            ⚠️ Bitte reservieren Sie nur innerhalb unserer Öffnungszeiten.
+          </p>
+          <a
+            href="#opening-hours"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('opening-hours')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-2.5 rounded-full text-sm tracking-wider uppercase font-medium transition-all duration-300 shadow hover:shadow-lg"
+          >
+            Öffnungszeiten ansehen
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </motion.div>
 
         <motion.div

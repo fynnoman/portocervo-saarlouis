@@ -1,9 +1,29 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
+
+const images = [
+  '/4CA6D974-904A-4932-9292-184FFF7A6D10_4_5005_c.jpeg',
+  '/2FA51187-BAAE-41F4-8A97-2381397F7325.jpeg',
+  '/597CB459-217A-4171-AB66-7D5696079126_1_105_c.jpeg',
+  '/38672E83-BCEE-43FB-A910-89C6B2FB0008_1_105_c.jpeg',
+  '/554794DF-3636-4A2D-856D-08360EE9F9C5.jpeg',
+  '/C962BB62-838B-4A3D-8FFD-0C4142B7B563_1_105_c.jpeg',
+  '/DCFC96B7-9A74-4723-8B60-C7362473FBE0_1_105_c.jpeg',
+  '/6AE92497-B1FD-4998-BE03-EA2CA8C66CC7_1_105_c.jpeg',
+];
 
 export default function Experience() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section id="experience" className="relative overflow-hidden bg-gray-100">
       {/* Decorative Elements */}
@@ -53,17 +73,44 @@ export default function Experience() {
               className="absolute -bottom-3 -right-3 w-12 h-12 border-b-4 border-r-4 border-[#c9a961] z-10"
             />
 
-            {/* Image */}
+            {/* Image Slideshow */}
             <div className="relative w-full h-full overflow-hidden rounded-sm shadow-2xl">
-              <Image
-                src="/4CA6D974-904A-4932-9292-184FFF7A6D10_4_5005_c.jpeg"
-                alt="Italienische Küche"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                priority
-              />
+              <AnimatePresence mode="wait">
+                {images[currentIndex] && (
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={images[currentIndex]}
+                      alt={`Italienische Küche ${currentIndex + 1}`}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      priority={currentIndex === 0}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
               {/* Subtle overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#c9a961]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Dot indicators */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentIndex(i)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      i === currentIndex ? 'bg-white w-5' : 'bg-white/50'
+                    }`}
+                    aria-label={`Bild ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

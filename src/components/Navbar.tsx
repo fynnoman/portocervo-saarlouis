@@ -17,12 +17,10 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
       if (menuOpen) setMenuOpen(false);
     };
     window.addEventListener('scroll', handleScroll);
@@ -38,74 +36,72 @@ export default function Navbar() {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-white/80 backdrop-blur-sm'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 py-3 md:py-4">
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-wrap justify-center gap-3 md:gap-5 lg:gap-7">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center justify-between">
-          <span className="text-gray-900 font-light text-sm tracking-widest uppercase">Porto Cervo</span>
+    <>
+      {/* Toggle Button – always visible at top */}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <div className="flex justify-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 text-gray-700 hover:text-[#c9a961] transition-colors"
-            aria-label="Menü"
+            className={`group flex items-center gap-2 px-5 py-2 rounded-b-xl transition-all duration-300 shadow-md ${
+              menuOpen
+                ? 'bg-white text-[#c9a961]'
+                : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/80 hover:text-[#c9a961]'
+            }`}
+            aria-label="Navigation öffnen"
           >
-            {menuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            <span className="text-xs font-light uppercase tracking-[0.2em]">Menü</span>
+            <motion.svg
+              animate={{ rotate: menuOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+            </motion.svg>
           </button>
         </div>
-      </div>
 
-      {/* Mobile Dropdown */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden bg-white/95 backdrop-blur-sm border-t border-gray-100 overflow-hidden"
-          >
-            <div className="px-4 py-3 grid grid-cols-2 gap-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+        {/* Expandable Navigation */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, y: -10, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: 'auto' }}
+              exit={{ opacity: 0, y: -10, height: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-100 overflow-hidden"
+            >
+              {/* Desktop layout */}
+              <div className="hidden md:flex flex-wrap justify-center gap-3 lg:gap-6 max-w-7xl mx-auto px-4 py-4">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Mobile layout */}
+              <div className="md:hidden px-4 py-3 grid grid-cols-2 gap-1">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </div>
+    </>
   );
 }
