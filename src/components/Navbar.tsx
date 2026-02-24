@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const navItems = [
   { label: 'Restaurant', id: 'restaurant-image' },
@@ -31,7 +32,9 @@ export default function Navbar() {
     setMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 60; // Höhe der fixed Navbar
+      const top = element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   };
 
@@ -75,28 +78,50 @@ export default function Navbar() {
             >
               {/* Desktop layout */}
               <div className="hidden md:flex flex-wrap justify-center gap-3 lg:gap-6 max-w-7xl mx-auto px-4 py-4">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
-                  >
-                    {item.label}
-                  </button>
-                ))}
+                {navItems.map((item) =>
+                  item.id === 'speisekarten' ? (
+                    <Link
+                      key={item.id}
+                      href="/speisekarten"
+                      onClick={() => setMenuOpen(false)}
+                      className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
+                    >
+                      {item.label}
+                    </button>
+                  )
+                )}
               </div>
 
               {/* Mobile layout */}
               <div className="md:hidden px-4 py-3 grid grid-cols-2 gap-1">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
-                  >
-                    {item.label}
-                  </button>
-                ))}
+                {navItems.map((item) =>
+                  item.id === 'speisekarten' ? (
+                    <Link
+                      key={item.id}
+                      href="/speisekarten"
+                      onClick={() => setMenuOpen(false)}
+                      className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
+                    >
+                      {item.label}
+                    </button>
+                  )
+                )}
               </div>
             </motion.nav>
           )}
