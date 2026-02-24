@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 const navItems = [
@@ -19,23 +19,34 @@ const navItems = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isScrollingRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (menuOpen) setMenuOpen(false);
+      if (menuOpen && !isScrollingRef.current) {
+        setMenuOpen(false);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [menuOpen]);
 
   const scrollToSection = (id: string) => {
-    setMenuOpen(false);
     const element = document.getElementById(id);
-    if (element) {
-      const offset = 60; // Höhe der fixed Navbar
+    if (!element) return;
+
+    isScrollingRef.current = true;
+    setMenuOpen(false);
+
+    // Kurz warten bis Menü animiert ist, dann scrollen
+    setTimeout(() => {
+      const offset = 70;
       const top = element.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
-    }
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 800);
+    }, 50);
   };
 
   return (
