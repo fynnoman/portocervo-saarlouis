@@ -18,6 +18,13 @@ const menus = [
     file: "/SPEISEKARTE KOMPLETT dezember2 2025 Kopie.pdf",
     filename: "Speisekarte Porto Cervo.pdf",
   },
+  {
+    id: "empfehlungskarte",
+    title: "Empfehlungskarte",
+    description: "Unsere aktuellen Empfehlungen – saisonale Highlights und besondere Gerichte.",
+    file: "/empfehlungskarte.pdf",
+    filename: "Empfehlungskarte Porto Cervo.pdf",
+  },
 ];
 
 export default function SpeisekartenClient() {
@@ -92,7 +99,7 @@ export default function SpeisekartenClient() {
         </div>
 
         {/* PDF Cards */}
-        <div className={`grid gap-8 mb-16 ${visibleMenus.length === 1 ? 'max-w-2xl mx-auto' : 'md:grid-cols-2'}`}>
+        <div className={`grid gap-8 mb-16 ${visibleMenus.length === 1 ? 'max-w-2xl mx-auto' : visibleMenus.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
           {visibleMenus.map((menu) => (
             <div
               key={menu.id}

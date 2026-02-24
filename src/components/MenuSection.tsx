@@ -28,7 +28,7 @@ export default function MenuSection() {
           </p>
 
           {/* Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -80,6 +80,33 @@ export default function MenuSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
                 Speisekarte ansehen
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left flex flex-col group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="w-10 h-10 mb-4 text-[#c9a961]">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-medium text-gray-900 mb-2">Empfehlungskarte</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
+                Unsere aktuellen Empfehlungen – saisonale Highlights und besondere Gerichte.
+              </p>
+              <Link
+                href="/speisekarten#empfehlungskarte"
+                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow hover:shadow-lg self-start"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                Empfehlungen ansehen
               </Link>
             </motion.div>
           </div>

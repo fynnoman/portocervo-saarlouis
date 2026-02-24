@@ -21,19 +21,25 @@ export const metadata: Metadata = {
     "Restaurant Saarlouis",
     "Italienisches Restaurant Saarlouis",
     "Portocervo Saarlouis",
+    "Porto Cervo Saarlouis",
     "Restaurant Portocervo",
     "Italiener Saarlouis",
     "Pizza Saarlouis",
     "Pasta Saarlouis",
-    "Essen Saarlouis",
+    "Essen gehen Saarlouis",
     "Restaurant Saarland",
     "Italienische Küche Saarlouis",
     "Mittagstisch Saarlouis",
     "Reservierung Restaurant Saarlouis",
     "Mediterrane Küche Saarlouis",
     "Lothringer Straße Saarlouis",
-    "Live Musik Restaurant Saarlouis",
-    "Italienischer Abend Saarlouis",
+    "Restaurant Lothringer Straße",
+    "Tisch reservieren Saarlouis",
+    "Abendessen Saarlouis",
+    "Geburtstag feiern Saarlouis",
+    "Firmenfeier Saarlouis",
+    "Italiener in der Nähe Saarlouis",
+    "portocervo saarlouis",
   ],
 
   // Canonical & Alternate
@@ -53,10 +59,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/68A7E866-182F-4531-9864-52187EC82259.jpeg",
+        url: "/og-image.jpeg",
         width: 1200,
         height: 630,
-        alt: "Restaurant Portocervo Saarlouis – Italienisches Restaurant",
+        alt: "Restaurant Portocervo Saarlouis – Authentische italienische Küche",
       },
     ],
   },
@@ -67,7 +73,7 @@ export const metadata: Metadata = {
     title: "Restaurant Portocervo Saarlouis | Italienisches Restaurant",
     description:
       "Authentische italienische Küche in Saarlouis. Pizza, Pasta & mediterrane Spezialitäten. Reservierung: 06831 2747.",
-    images: ["/68A7E866-182F-4531-9864-52187EC82259.jpeg"],
+    images: ["/og-image.jpeg"],
   },
 
   // Robots
@@ -83,15 +89,20 @@ export const metadata: Metadata = {
     },
   },
 
-  // Verification (bei Bedarf anpassen)
+  // Google Search Console Verification – Code nach Registrierung einsetzen
   // verification: {
   //   google: "DEIN_GOOGLE_VERIFICATION_CODE",
   // },
 
   // Weitere Meta
   category: "restaurant",
-  creator: "Restaurant Portocervo",
+  creator: "Restaurant Portocervo Saarlouis",
   publisher: "Restaurant Portocervo Saarlouis",
+  authors: [{ name: "Restaurant Portocervo Saarlouis" }],
+  formatDetection: {
+    telephone: true,
+    address: true,
+  },
 };
 
 // JSON-LD Structured Data für Google Rich Results
@@ -143,11 +154,8 @@ const jsonLd = {
       closes: "00:00",
     },
   ],
-  hasMenu: {
-    "@type": "Menu",
-    name: "Speisekarte",
-    description: "Italienische Spezialitäten, Pizza, Pasta und mehr",
-  },
+  hasMenu: "https://www.portocervo-saarlouis.de/speisekarten",
+  menu: "https://www.portocervo-saarlouis.de/speisekarten",
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "Außenbereich", value: true },
     { "@type": "LocationFeatureSpecification", name: "Kinderspeisekarte", value: true },
