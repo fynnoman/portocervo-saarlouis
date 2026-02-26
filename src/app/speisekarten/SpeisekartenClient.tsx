@@ -3,38 +3,53 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const menus = [
+const MENU_META = [
   {
     id: "mittagstisch",
     title: "Mittagstisch",
     description: "Täglich frische Mittagsgerichte – schnell, lecker und zu fairen Preisen.",
-    file: "/Mittagstisch.pdf",
     filename: "Mittagstisch.pdf",
+    fallback: "/Mittagstisch.pdf",
   },
   {
     id: "speisekarte",
     title: "Speisekarte",
     description: "Unsere vollständige Karte mit Pizza, Pasta, Fleisch, Fisch und Desserts.",
-    file: "/SPEISEKARTE KOMPLETT dezember2 2025 Kopie.pdf",
     filename: "Speisekarte Porto Cervo.pdf",
+    fallback: "/SPEISEKARTE KOMPLETT dezember2 2025 Kopie.pdf",
   },
   {
     id: "empfehlungskarte",
     title: "Empfehlungskarte",
     description: "Unsere aktuellen Empfehlungen – saisonale Highlights und besondere Gerichte.",
-    file: "/empfehlungskarte.pdf",
     filename: "Empfehlungskarte Porto Cervo.pdf",
+    fallback: "/empfehlungskarte.pdf",
   },
 ];
 
 export default function SpeisekartenClient() {
   const [active, setActive] = useState<string | null>(null);
+  const [pdfUrls, setPdfUrls] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const hash = window.location.hash.replace('#', '');
-    const match = menus.find((m) => m.id === hash);
+    const match = MENU_META.find((m) => m.id === hash);
     setActive(match ? match.id : null);
+
+    // Aktuelle PDF-URLs laden (Blob oder Fallback), mit Timeout
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+    fetch('/api/admin/menu-urls', { signal: controller.signal })
+      .then((r) => r.json())
+      .then((data) => setPdfUrls(data))
+      .catch(() => {})
+      .finally(() => clearTimeout(timeout));
   }, []);
+
+  const menus = MENU_META.map((m) => ({
+    ...m,
+    file: pdfUrls[m.id] || m.fallback,
+  }));
 
   const visibleMenus = active ? menus.filter((m) => m.id === active) : menus;
   const activeMenu = menus.find((m) => m.id === active);
