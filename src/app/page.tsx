@@ -9,7 +9,6 @@ import OpeningHours from '@/components/OpeningHours';
 import Events from '@/components/Events';
 import LunchMenu from '@/components/LunchMenu';
 import LiveEvents from '@/components/LiveEvents';
-import ReservationForm from '@/components/ReservationForm';
 import MenuSection from '@/components/MenuSection';
 import Map from '@/components/Map';
 import Footer from '@/components/Footer';
@@ -20,7 +19,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <main>
-        <ReservationForm />
         <MenuSection />
         <RestaurantImage />
         <Divider />

@@ -13,7 +13,6 @@ const navItems = [
   { label: 'Speisen', id: 'lunch-menu' },
   { label: 'Speisekarten', id: 'speisekarten' },
   { label: 'Events', id: 'events' },
-  { label: 'Reservierung', id: 'reservation' },
   { label: 'Anfahrt', id: 'map' },
 ];
 
