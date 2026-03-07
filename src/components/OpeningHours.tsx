@@ -1,18 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const openingHours = [
-  { day: 'Dienstag', hours: 'Geschlossen' },
-  { day: 'Mittwoch', hours: '11:30–14:30, 18:00–22:00' },
-  { day: 'Donnerstag', hours: '11:30–14:30, 18:00–22:00' },
-  { day: 'Freitag', hours: '11:30–14:30, 18:00–22:00' },
-  { day: 'Samstag', hours: '11:30–14:30, 18:00–22:00' },
-  { day: 'Sonntag', hours: '11:30–14:30, 18:00–22:00' },
-  { day: 'Montag', hours: '11:30–14:30, 18:00–22:00' },
-];
+import { useContent } from '@/hooks/useContent';
 
 export default function OpeningHours() {
+  const content = useContent();
+  const openingHours = content.openingHours.rows;
   return (
     <section id="opening-hours" className="py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gray-100 relative overflow-hidden">
       {/* Decorative corner frames */}

@@ -161,10 +161,21 @@ export default function AdminPage() {
 
       <main className="max-w-3xl mx-auto px-4 py-10">
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 mb-8 text-sm text-blue-700">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 mb-6 text-sm text-blue-700">
           <strong>So funktioniert es:</strong> Klicken Sie auf eine Karte oder ziehen Sie eine PDF-Datei
           in das entsprechende Feld. Die Karte wird sofort auf der Website aktualisiert.
         </div>
+
+        {/* Link zum Editor */}
+        <a href="/admin/editor"
+          className="flex items-center justify-between bg-white border-2 border-[#c9a961] rounded-2xl px-6 py-5 mb-6 hover:bg-[#fdf8ef] transition-colors group"
+        >
+          <div>
+            <p className="font-semibold text-gray-900 text-base">✏️ Website-Editor</p>
+            <p className="text-sm text-gray-500 mt-0.5">Texte, Bilder, Öffnungszeiten & mehr bearbeiten</p>
+          </div>
+          <span className="text-[#c9a961] text-xl group-hover:translate-x-1 transition-transform">→</span>
+        </a>
 
         <div className="flex flex-col gap-5">
           {MENUS.map((menu) => {

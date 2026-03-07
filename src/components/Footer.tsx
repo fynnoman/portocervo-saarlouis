@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useContent } from '@/hooks/useContent';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const content = useContent();
 
   return (
     <footer className="bg-gray-900 text-white py-10 md:py-16 px-4 md:px-6">
@@ -30,16 +32,16 @@ export default function Footer() {
           >
             <h4 className="text-lg font-medium mb-4">Kontakt</h4>
             <div className="space-y-2 text-gray-400">
-              <p>Lothringer Str. 1</p>
-              <p>66740 Saarlouis</p>
+              <p>{content.footer.address}</p>
+              <p>{content.footer.city}</p>
               <p>
-                <a href="tel:068312747" className="hover:text-[#c9a961] transition-colors">
-                  06831 2747
+                <a href={`tel:${content.footer.phone.replace(/\s/g, '')}`} className="hover:text-[#c9a961] transition-colors">
+                  {content.footer.phone}
                 </a>
               </p>
               <p>
-                <a href="mailto:portocervo.saarlouis@gmail.com" className="hover:text-[#c9a961] transition-colors">
-                  portocervo.saarlouis@gmail.com
+                <a href={`mailto:${content.footer.email}`} className="hover:text-[#c9a961] transition-colors">
+                  {content.footer.email}
                 </a>
               </p>
             </div>

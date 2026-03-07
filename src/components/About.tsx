@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useContent } from '@/hooks/useContent';
 
 export default function About() {
+  const content = useContent();
   return (
     <section id="about" className="py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gradient-to-b from-gray-100 via-gray-100 to-gray-100 relative overflow-hidden">
       {/* Decorative background elements */}
@@ -30,11 +32,11 @@ export default function About() {
           className="text-center mb-8 md:mb-12 lg:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-gray-900 mb-3 md:mb-4">
-            Über Uns
+            {content.about.title}
           </h2>
           <div className="w-12 md:w-16 h-px bg-[#c9a961] mx-auto mb-4 md:mb-6"></div>
           <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-            Tradition trifft auf Leidenschaft – Willkommen in unserem italienischen Restaurant
+            {content.about.subtitle}
           </p>
         </motion.div>
 
@@ -60,71 +62,33 @@ export default function About() {
               </motion.div>
               
               <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed relative z-10 mb-4 md:mb-6 px-4 md:px-0">
-                Im Herzen von Saarlouis servieren wir authentische italienische Küche 
-                mit Liebe zum Detail und höchster Qualität.
+                {content.about.intro}
               </p>
             </div>
 
             <div className="space-y-6 max-w-2xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="group"
-              >
-                <div className="flex-shrink-0 w-12 h-12 bg-[#c9a961] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-opacity-20 transition-all duration-300">
-                  <span className="text-2xl">🥬</span>
-                </div>
-                <div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-900 mb-2">
-                    Frische Zutaten
-                  </h3>
-                  <p className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
-                    Wir verwenden nur die besten und frischesten Zutaten für unsere Gerichte
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="group"
-              >
-                <div className="flex-shrink-0 w-12 h-12 bg-[#c9a961] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-opacity-20 transition-all duration-300">
-                  <span className="text-2xl">🍝</span>
-                </div>
-                <div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-900 mb-2">
-                    Italienische Tradition
-                  </h3>
-                  <p className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
-                    Unsere Rezepte basieren auf authentischer italienischer Kochkunst
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="group"
-              >
-                <div className="flex-shrink-0 w-12 h-12 bg-[#c9a961] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-opacity-20 transition-all duration-300">
-                  <span className="text-2xl">❤️</span>
-                </div>
-                <div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-900 mb-2">
-                    Mit Herz & Seele
-                  </h3>
-                  <p className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
-                    Jedes Gericht wird mit Leidenschaft und Hingabe zubereitet
-                  </p>
-                </div>
-              </motion.div>
+              {content.about.features.map((feature, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                  className="group"
+                >
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#c9a961] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-opacity-20 transition-all duration-300">
+                    <span className="text-2xl">{feature.icon}</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-900 mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
+                      {feature.text}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
             {/* Decorative bottom accent */}

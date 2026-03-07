@@ -3,9 +3,11 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { useContent } from '@/hooks/useContent';
 
 export default function Hero() {
   const ref = useRef(null);
+  const content = useContent();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -19,7 +21,7 @@ export default function Hero() {
       ref={ref} 
       className="relative min-h-screen flex items-center justify-center pt-10"
       style={{
-        backgroundImage: 'url(/A35107A5-F986-4680-A2F5-C34B2B38507A.png)',
+        backgroundImage: `url(${content.hero.backgroundImage}`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -51,15 +53,15 @@ export default function Hero() {
           {/* Text Content */}
           <div className="space-y-3 md:space-y-4">
             <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-white px-4">
-              Italienische Küche in Saarlouis
+              {content.hero.subtitle}
             </p>
             <div className="w-12 md:w-16 h-px bg-[#c9a961] mx-auto"></div>
             <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-white px-4">
-              Lothringer Str. 1, 66740 Saarlouis
+              {content.hero.address}
             </p>
             <p className="text-base md:text-lg lg:text-xl xl:text-2xl px-4">
-              <a href="tel:068312747" className="text-white hover:text-[#c9a961] transition-colors">
-                06831 2747
+              <a href={`tel:${content.hero.phone.replace(/\s/g, '')}`} className="text-white hover:text-[#c9a961] transition-colors">
+                {content.hero.phone}
               </a>
             </p>
           </div>
