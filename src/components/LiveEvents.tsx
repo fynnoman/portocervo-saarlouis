@@ -1,23 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useContent } from '@/hooks/useContent';
 
 export default function LiveEvents() {
-  const events = [
-    {
-      title: 'Live Musik',
-      description: 'Genießen Sie regelmäßig Live-Musik in unserem Restaurant. Lassen Sie sich von italienischen Klängen verzaubern.',
-    },
-    {
-      title: 'Italienischer Abend',
-      description: 'Einmal im Monat verwandeln wir unser Restaurant in ein Stück Italien. Authentische Spezialitäten und besondere Atmosphäre.',
-      highlight: 'Jeden ersten Freitag im Monat',
-    },
-    {
-      title: 'Besondere Events',
-      description: 'Von Weinverkostungen bis zu kulinarischen Themenabenden - erleben Sie italienische Kultur hautnah.',
-    },
-  ];
+  const content = useContent();
+  const { title, backgroundImage, items } = content.liveEvents;
 
   return (
     <section id="live-events" className="py-8 md:py-12 lg:py-16 px-4 md:px-6 relative overflow-hidden">
@@ -25,7 +13,7 @@ export default function LiveEvents() {
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(/631E3DF3-F04F-4DF0-814A-86EF4010F96A_1_201_a.jpeg)',
+          backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -45,16 +33,16 @@ export default function LiveEvents() {
           className="text-center mb-8 md:mb-10 lg:mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 md:mb-4">
-            Veranstaltungen & Events
+            {title}
           </h2>
           <div className="w-12 md:w-16 h-px bg-[#c9a961] mx-auto"></div>
         </motion.div>
 
         {/* Events List */}
         <div className="space-y-6 md:space-y-8 lg:space-y-10">
-          {events.map((event, index) => (
+          {items.map((event, index) => (
             <motion.div
-              key={event.title}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -96,7 +84,7 @@ export default function LiveEvents() {
               </div>
 
               {/* Subtle separator */}
-              {index < events.length - 1 && (
+              {index < items.length - 1 && (
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}

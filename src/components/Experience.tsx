@@ -3,27 +3,20 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-
-const images = [
-  '/4CA6D974-904A-4932-9292-184FFF7A6D10_4_5005_c.jpeg',
-  '/2FA51187-BAAE-41F4-8A97-2381397F7325.jpeg',
-  '/597CB459-217A-4171-AB66-7D5696079126_1_105_c.jpeg',
-  '/38672E83-BCEE-43FB-A910-89C6B2FB0008_1_105_c.jpeg',
-  '/554794DF-3636-4A2D-856D-08360EE9F9C5.jpeg',
-  '/C962BB62-838B-4A3D-8FFD-0C4142B7B563_1_105_c.jpeg',
-  '/DCFC96B7-9A74-4723-8B60-C7362473FBE0_1_105_c.jpeg',
-  '/6AE92497-B1FD-4998-BE03-EA2CA8C66CC7_1_105_c.jpeg',
-];
+import { useContent } from '@/hooks/useContent';
 
 export default function Experience() {
+  const content = useContent();
+  const images = content.experience.images;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    if (!images.length) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
   return (
     <section id="experience" className="relative overflow-hidden bg-gray-100">
       {/* Decorative Elements */}
@@ -136,8 +129,8 @@ export default function Experience() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-800 mb-6 md:mb-8"
             >
-              Ein kulinarisches
-              <span className="block text-[#c9a961] mt-2">Erlebnis</span>
+              {content.experience.title}
+              <span className="block text-[#c9a961] mt-2">{content.experience.titleAccent}</span>
             </motion.h2>
 
             <motion.p
@@ -147,8 +140,7 @@ export default function Experience() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 leading-relaxed mb-6 md:mb-8"
             >
-              Genießen Sie authentische italienische Küche in elegantem Ambiente. 
-              Jedes Gericht wird mit Liebe und traditionellen Rezepten zubereitet.
+              {content.experience.text}
             </motion.p>
 
             {/* Decorative Line */}

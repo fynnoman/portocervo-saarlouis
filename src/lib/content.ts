@@ -9,6 +9,16 @@ export interface SiteContent {
     address: string;
     phone: string;
   };
+  experience: {
+    title: string;
+    titleAccent: string;
+    text: string;
+    images: string[];
+  };
+  services: {
+    title: string;
+    items: { icon?: string; title: string; description: string }[];
+  };
   about: {
     title: string;
     subtitle: string;
@@ -18,12 +28,22 @@ export interface SiteContent {
   openingHours: {
     rows: { day: string; hours: string }[];
   };
+  lunchMenu: {
+    title: string;
+    subtitle: string;
+    categories: { icon: string; name: string; description: string }[];
+  };
   events: {
     title: string;
     subtitle: string;
     backgroundImage: string;
     offers: string[];
     occasions: string[];
+  };
+  liveEvents: {
+    title: string;
+    backgroundImage: string;
+    items: { title: string; description: string; highlight?: string }[];
   };
   restaurantImage: {
     image: string;
@@ -43,6 +63,28 @@ export const DEFAULT_CONTENT: SiteContent = {
     subtitle: 'Italienische Küche in Saarlouis',
     address: 'Lothringer Str. 1, 66740 Saarlouis',
     phone: '06831 2747',
+  },
+  experience: {
+    title: 'Ein kulinarisches',
+    titleAccent: 'Erlebnis',
+    text: 'Genießen Sie authentische italienische Küche in elegantem Ambiente. Jedes Gericht wird mit Liebe und traditionellen Rezepten zubereitet.',
+    images: [
+      '/4CA6D974-904A-4932-9292-184FFF7A6D10_4_5005_c.jpeg',
+      '/2FA51187-BAAE-41F4-8A97-2381397F7325.jpeg',
+      '/597CB459-217A-4171-AB66-7D5696079126_1_105_c.jpeg',
+      '/38672E83-BCEE-43FB-A910-89C6B2FB0008_1_105_c.jpeg',
+      '/554794DF-3636-4A2D-856D-08360EE9F9C5.jpeg',
+      '/C962BB62-838B-4A3D-8FFD-0C4142B7B563_1_105_c.jpeg',
+      '/DCFC96B7-9A74-4723-8B60-C7362473FBE0_1_105_c.jpeg',
+      '/6AE92497-B1FD-4998-BE03-EA2CA8C66CC7_1_105_c.jpeg',
+    ],
+  },
+  services: {
+    title: 'Unsere Serviceoptionen',
+    items: [
+      { title: 'Sitzplätze im Freien', description: 'Genießen Sie Ihr Essen in unserem schönen Außenbereich' },
+      { title: 'Speisekarte für Kinder', description: 'Spezielle Gerichte für unsere kleinen Gäste' },
+    ],
   },
   about: {
     title: 'Über Uns',
@@ -65,6 +107,17 @@ export const DEFAULT_CONTENT: SiteContent = {
       { day: 'Montag', hours: '11:30–14:30, 18:00–22:00' },
     ],
   },
+  lunchMenu: {
+    title: 'Unsere Küche',
+    subtitle: 'Von der Pizza bis zum Dessert – entdecken Sie die Vielfalt der italienischen Küche',
+    categories: [
+      { icon: '🍕', name: 'Pizza', description: 'Knuspriger Teig, frische Zutaten, traditionell im Steinofen gebacken' },
+      { icon: '🍝', name: 'Pasta', description: 'Hausgemachte Nudeln nach authentischen italienischen Rezepten' },
+      { icon: '🥗', name: 'Salate', description: 'Frische, knackige Salate mit mediterranem Dressing' },
+      { icon: '🥩', name: 'Fleischgerichte', description: 'Zarte Fleischspezialitäten, meisterhaft zubereitet' },
+      { icon: '🍰', name: 'Desserts', description: 'Süße Verführungen für den perfekten Abschluss' },
+    ],
+  },
   events: {
     title: 'Feiern & Events',
     subtitle: 'Feiern Sie Ihre besonderen Momente in unserem Restaurant – wir sorgen für den perfekten Rahmen für Ihre Veranstaltung.',
@@ -80,6 +133,15 @@ export const DEFAULT_CONTENT: SiteContent = {
       'Hochzeiten & Verlobungen',
       'Firmenfeiern',
       'Weihnachtsfeiern',
+    ],
+  },
+  liveEvents: {
+    title: 'Veranstaltungen & Events',
+    backgroundImage: '/631E3DF3-F04F-4DF0-814A-86EF4010F96A_1_201_a.jpeg',
+    items: [
+      { title: 'Live Musik', description: 'Genießen Sie regelmäßig Live-Musik in unserem Restaurant. Lassen Sie sich von italienischen Klängen verzaubern.' },
+      { title: 'Italienischer Abend', description: 'Einmal im Monat verwandeln wir unser Restaurant in ein Stück Italien. Authentische Spezialitäten und besondere Atmosphäre.', highlight: 'Jeden ersten Freitag im Monat' },
+      { title: 'Besondere Events', description: 'Von Weinverkostungen bis zu kulinarischen Themenabenden - erleben Sie italienische Kultur hautnah.' },
     ],
   },
   restaurantImage: {

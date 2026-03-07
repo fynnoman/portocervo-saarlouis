@@ -318,6 +318,170 @@ export default function AdminEditorPage() {
           </div>
         </SectionCard>
 
+        {/* ERLEBNIS */}
+        <SectionCard title="Das Erlebnis (Galerie)" icon="🖼️">
+          <Field label="Überschrift" value={content.experience.title} onChange={v => set('experience', { ...content.experience, title: v })} />
+          <Field label="Überschrift Akzent (Kursiv)" value={content.experience.titleAccent} onChange={v => set('experience', { ...content.experience, titleAccent: v })} />
+          <Field label="Beschreibungstext" value={content.experience.text} onChange={v => set('experience', { ...content.experience, text: v })} multiline />
+          <div className="mt-2">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Bilder</p>
+            {content.experience.images.map((img, i) => (
+              <div key={i} className="flex gap-2 items-start mb-3">
+                <div className="flex-1">
+                  <ImageUpload label={`Bild ${i + 1}`} value={img}
+                    onChange={url => {
+                      const images = [...content.experience.images];
+                      images[i] = url;
+                      set('experience', { ...content.experience, images });
+                    }} password={password} />
+                </div>
+                <button onClick={() => {
+                  const images = content.experience.images.filter((_, j) => j !== i);
+                  set('experience', { ...content.experience, images });
+                }} className="text-red-400 hover:text-red-600 px-2 text-lg mt-6">✕</button>
+              </div>
+            ))}
+            <button onClick={() => set('experience', { ...content.experience, images: [...content.experience.images, ''] })}
+              className="text-sm text-[#c9a961] hover:text-[#b8963a] mt-1">+ Bild hinzufügen</button>
+          </div>
+        </SectionCard>
+
+        {/* SERVICES */}
+        <SectionCard title="Unser Service" icon="⭐">
+          <Field label="Überschrift" value={content.services.title} onChange={v => set('services', { ...content.services, title: v })} />
+          <div className="mt-2">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Service-Punkte</p>
+            {content.services.items.map((item, i) => (
+              <div key={i} className="bg-gray-50 rounded-xl p-4 mb-3">
+                <div className="flex justify-between items-start mb-2">
+                  <p className="text-xs text-gray-400 font-medium">Punkt {i + 1}</p>
+                  <button onClick={() => {
+                    const items = content.services.items.filter((_, j) => j !== i);
+                    set('services', { ...content.services, items });
+                  }} className="text-red-400 hover:text-red-600 text-sm">✕</button>
+                </div>
+                <div className="flex gap-3 mb-2">
+                  <div className="w-20">
+                    <label className="block text-xs text-gray-400 mb-1">Icon (Emoji)</label>
+                    <input value={item.icon || ''} onChange={e => {
+                      const items = [...content.services.items];
+                      items[i] = { ...item, icon: e.target.value };
+                      set('services', { ...content.services, items });
+                    }} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm text-center" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block text-xs text-gray-400 mb-1">Titel</label>
+                    <input value={item.title} onChange={e => {
+                      const items = [...content.services.items];
+                      items[i] = { ...item, title: e.target.value };
+                      set('services', { ...content.services, items });
+                    }} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Beschreibung</label>
+                  <textarea value={item.description} onChange={e => {
+                    const items = [...content.services.items];
+                    items[i] = { ...item, description: e.target.value };
+                    set('services', { ...content.services, items });
+                  }} rows={2} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm resize-none" />
+                </div>
+              </div>
+            ))}
+            <button onClick={() => set('services', { ...content.services, items: [...content.services.items, { icon: '✨', title: '', description: '' }] })}
+              className="text-sm text-[#c9a961] hover:text-[#b8963a] mt-1">+ Service hinzufügen</button>
+          </div>
+        </SectionCard>
+
+        {/* UNSERE KÜCHE */}
+        <SectionCard title="Unsere Küche (Speisekategorien)" icon="🍽️">
+          <Field label="Überschrift" value={content.lunchMenu.title} onChange={v => set('lunchMenu', { ...content.lunchMenu, title: v })} />
+          <Field label="Untertitel" value={content.lunchMenu.subtitle} onChange={v => set('lunchMenu', { ...content.lunchMenu, subtitle: v })} />
+          <div className="mt-2">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Kategorien</p>
+            {content.lunchMenu.categories.map((cat, i) => (
+              <div key={i} className="bg-gray-50 rounded-xl p-4 mb-3">
+                <div className="flex justify-between items-start mb-2">
+                  <p className="text-xs text-gray-400 font-medium">Kategorie {i + 1}</p>
+                  <button onClick={() => {
+                    const categories = content.lunchMenu.categories.filter((_, j) => j !== i);
+                    set('lunchMenu', { ...content.lunchMenu, categories });
+                  }} className="text-red-400 hover:text-red-600 text-sm">✕</button>
+                </div>
+                <div className="flex gap-3 mb-2">
+                  <div className="w-20">
+                    <label className="block text-xs text-gray-400 mb-1">Icon (Emoji)</label>
+                    <input value={cat.icon} onChange={e => {
+                      const categories = [...content.lunchMenu.categories];
+                      categories[i] = { ...cat, icon: e.target.value };
+                      set('lunchMenu', { ...content.lunchMenu, categories });
+                    }} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm text-center" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block text-xs text-gray-400 mb-1">Name</label>
+                    <input value={cat.name} onChange={e => {
+                      const categories = [...content.lunchMenu.categories];
+                      categories[i] = { ...cat, name: e.target.value };
+                      set('lunchMenu', { ...content.lunchMenu, categories });
+                    }} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Beschreibung</label>
+                  <textarea value={cat.description} onChange={e => {
+                    const categories = [...content.lunchMenu.categories];
+                    categories[i] = { ...cat, description: e.target.value };
+                    set('lunchMenu', { ...content.lunchMenu, categories });
+                  }} rows={2} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm resize-none" />
+                </div>
+              </div>
+            ))}
+            <button onClick={() => set('lunchMenu', { ...content.lunchMenu, categories: [...content.lunchMenu.categories, { icon: '🍴', name: '', description: '' }] })}
+              className="text-sm text-[#c9a961] hover:text-[#b8963a] mt-1">+ Kategorie hinzufügen</button>
+          </div>
+        </SectionCard>
+
+        {/* VERANSTALTUNGEN (LiveEvents) */}
+        <SectionCard title="Veranstaltungen & Events" icon="🎵">
+          <Field label="Überschrift" value={content.liveEvents.title} onChange={v => set('liveEvents', { ...content.liveEvents, title: v })} />
+          <ImageUpload label="Hintergrundbild" value={content.liveEvents.backgroundImage}
+            onChange={v => set('liveEvents', { ...content.liveEvents, backgroundImage: v })} password={password} />
+          <div className="mt-2">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Event-Einträge</p>
+            {content.liveEvents.items.map((item, i) => (
+              <div key={i} className="bg-gray-50 rounded-xl p-4 mb-3">
+                <div className="flex justify-between items-start mb-2">
+                  <p className="text-xs text-gray-400 font-medium">Event {i + 1}</p>
+                  <button onClick={() => {
+                    const items = content.liveEvents.items.filter((_, j) => j !== i);
+                    set('liveEvents', { ...content.liveEvents, items });
+                  }} className="text-red-400 hover:text-red-600 text-sm">✕</button>
+                </div>
+                <label className="block text-xs text-gray-400 mb-1">Titel</label>
+                <input value={item.title} onChange={e => {
+                  const items = [...content.liveEvents.items];
+                  items[i] = { ...item, title: e.target.value };
+                  set('liveEvents', { ...content.liveEvents, items });
+                }} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm mb-2" />
+                <label className="block text-xs text-gray-400 mb-1">Beschreibung</label>
+                <textarea value={item.description} onChange={e => {
+                  const items = [...content.liveEvents.items];
+                  items[i] = { ...item, description: e.target.value };
+                  set('liveEvents', { ...content.liveEvents, items });
+                }} rows={2} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm resize-none mb-2" />
+                <label className="block text-xs text-gray-400 mb-1">Highlight (optional, z.B. &quot;Jeden ersten Freitag&quot;)</label>
+                <input value={item.highlight || ''} onChange={e => {
+                  const items = [...content.liveEvents.items];
+                  items[i] = { ...item, highlight: e.target.value || undefined };
+                  set('liveEvents', { ...content.liveEvents, items });
+                }} className="w-full px-2 py-1.5 border border-gray-200 rounded-lg text-sm" />
+              </div>
+            ))}
+            <button onClick={() => set('liveEvents', { ...content.liveEvents, items: [...content.liveEvents.items, { title: '', description: '' }] })}
+              className="text-sm text-[#c9a961] hover:text-[#b8963a] mt-1">+ Event hinzufügen</button>
+          </div>
+        </SectionCard>
+
         {/* FOOTER / KONTAKT */}
         <SectionCard title="Kontakt & Footer" icon="📞">
           <Field label="Straße" value={content.footer.address} onChange={v => set('footer', { ...content.footer, address: v })} />

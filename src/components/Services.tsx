@@ -1,19 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const services = [
-  {
-    title: 'Sitzplätze im Freien',
-    description: 'Genießen Sie Ihr Essen in unserem schönen Außenbereich',
-  },
-  {
-    title: 'Speisekarte für Kinder',
-    description: 'Spezielle Gerichte für unsere kleinen Gäste',
-  },
-];
+import { useContent } from '@/hooks/useContent';
 
 export default function Services() {
+  const content = useContent();
+  const services = content.services.items;
   return (
     <section id="services" className="py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gray-100 relative overflow-hidden">
       {/* Decorative side lines */}
@@ -41,7 +33,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-4">
-            Unsere Serviceoptionen
+            {content.services.title}
           </h2>
           <div className="w-16 h-px bg-[#c9a961] mx-auto"></div>
         </motion.div>
