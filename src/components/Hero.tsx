@@ -21,7 +21,7 @@ export default function Hero() {
       ref={ref} 
       className="relative min-h-screen flex items-center justify-center pt-10"
       style={{
-        backgroundImage: `url(${content.hero.backgroundImage}`,
+        backgroundImage: `url(${content.hero.backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
