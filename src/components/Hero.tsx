@@ -52,14 +52,17 @@ export default function Hero() {
             
           {/* Text Content */}
           <div className="space-y-3 md:space-y-4">
-            <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-white px-4">
+            <p className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-white px-4"
+              style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>
               {content.hero.subtitle}
             </p>
             <div className="w-12 md:w-16 h-px bg-[#c9a961] mx-auto"></div>
-            <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-white px-4">
+            <p className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-3xl text-white px-4"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.7)' }}>
               {content.hero.address}
             </p>
-            <p className="text-base md:text-lg lg:text-xl xl:text-2xl px-4">
+            <p className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-3xl px-4"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.7)' }}>
               <a href={`tel:${content.hero.phone.replace(/\s/g, '')}`} className="text-white hover:text-[#c9a961] transition-colors">
                 {content.hero.phone}
               </a>
