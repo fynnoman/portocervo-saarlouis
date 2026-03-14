@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ConsentProvider } from "@/components/CookieBanner";
-import { LangProvider } from "@/context/LangContext";
 
 const storyScript = localFont({
   src: "../../public/fonts/StoryScript-Regular.ttf",
@@ -234,11 +233,9 @@ export default function RootLayout({
         <meta name="ICBM" content="49.3134, 6.7528" />
       </head>
       <body className={`${storyScript.variable} antialiased`}>
-        <LangProvider>
-          <ConsentProvider>
-            {children}
-          </ConsentProvider>
-        </LangProvider>
+        <ConsentProvider>
+          {children}
+        </ConsentProvider>
       </body>
     </html>
   );

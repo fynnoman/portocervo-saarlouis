@@ -3,32 +3,22 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useLang } from '@/context/LangContext';
-import { translations, Lang } from '@/lib/translations';
 
-const LANG_OPTIONS: { code: Lang; label: string }[] = [
-  { code: 'de', label: 'DE' },
-  { code: 'en', label: 'EN' },
-  { code: 'fr', label: 'FR' },
+const navItems = [
+  { label: 'Restaurant', id: 'restaurant-image' },
+  { label: 'Erlebnis', id: 'experience' },
+  { label: 'Services', id: 'services' },
+  { label: 'Über Uns', id: 'about' },
+  { label: 'Öffnungszeiten', id: 'opening-hours' },
+  { label: 'Speisen', id: 'lunch-menu' },
+  { label: 'Speisekarten', id: 'speisekarten' },
+  { label: 'Events', id: 'events' },
+  { label: 'Anfahrt', id: 'map' },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isScrollingRef = useRef(false);
-  const { lang, setLang } = useLang();
-  const nav = translations[lang].nav;
-
-  const navItems = [
-    { label: nav.restaurant, id: 'restaurant-image' },
-    { label: nav.experience, id: 'experience' },
-    { label: nav.services, id: 'services' },
-    { label: nav.about, id: 'about' },
-    { label: nav.openingHours, id: 'opening-hours' },
-    { label: nav.food, id: 'lunch-menu' },
-    { label: nav.menuCards, id: 'speisekarten' },
-    { label: nav.events, id: 'events' },
-    { label: nav.directions, id: 'map' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +52,7 @@ export default function Navbar() {
     <>
       {/* Toggle Button – always visible at top */}
       <div className="fixed top-0 left-0 right-0 z-50">
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex justify-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className={`group flex items-center gap-2 px-5 py-2 rounded-b-xl transition-all duration-300 shadow-md ${
@@ -72,7 +62,7 @@ export default function Navbar() {
             }`}
             aria-label="Navigation öffnen"
           >
-            <span className="text-xs font-light uppercase tracking-[0.2em]">{nav.menu}</span>
+            <span className="text-xs font-light uppercase tracking-[0.2em]">Menü</span>
             <motion.svg
               animate={{ rotate: menuOpen ? 180 : 0 }}
               transition={{ duration: 0.3 }}
@@ -84,29 +74,6 @@ export default function Navbar() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
             </motion.svg>
           </button>
-
-          {/* Language Switcher */}
-          <div className={`flex items-center rounded-b-xl shadow-md overflow-hidden transition-all duration-300 ${
-            menuOpen ? 'bg-white' : 'bg-white/20 backdrop-blur-sm'
-          }`}>
-            {LANG_OPTIONS.map((opt, i) => (
-              <button
-                key={opt.code}
-                onClick={() => setLang(opt.code)}
-                className={`px-3 py-2 text-xs font-medium tracking-wider transition-all duration-200 ${
-                  i > 0 ? 'border-l border-white/30' : ''
-                } ${
-                  lang === opt.code
-                    ? 'text-[#c9a961] font-bold'
-                    : menuOpen
-                      ? 'text-gray-500 hover:text-[#c9a961]'
-                      : 'text-white/80 hover:text-white'
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Expandable Navigation */}
