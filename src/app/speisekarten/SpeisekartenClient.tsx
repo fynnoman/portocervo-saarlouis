@@ -30,8 +30,13 @@ const MENU_META = [
 export default function SpeisekartenClient() {
   const [active, setActive] = useState<string | null>(null);
   const [pdfUrls, setPdfUrls] = useState<Record<string, string>>({});
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Detect mobile: iOS/Android doesn't support inline PDF iframes
+    const ua = navigator.userAgent;
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(ua));
+
     const hash = window.location.hash.replace('#', '');
     const match = MENU_META.find((m) => m.id === hash);
     setActive(match ? match.id : null);
@@ -122,13 +127,39 @@ export default function SpeisekartenClient() {
               className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col"
             >
               {/* PDF Viewer */}
-              <div className="w-full h-[400px] sm:h-[500px] md:h-[650px] bg-gray-50">
-                <iframe
-                  src={`${menu.file}#toolbar=0&navpanes=0&scrollbar=0`}
-                  className="w-full h-full"
-                  title={menu.title}
-                />
-              </div>
+              {isMobile ? (
+                /* Mobile: iframe doesn't work on iOS — show a full-width open button instead */
+                <a
+                  href={menu.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex flex-col items-center justify-center gap-4 py-12 px-6 bg-gray-50 text-center"
+                >
+                  <div className="w-16 h-16 rounded-full bg-[#c9a961]/10 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-[#c9a961]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-medium text-lg mb-1">{menu.title}</p>
+                    <p className="text-gray-500 text-sm">Zum Öffnen antippen</p>
+                  </div>
+                  <span className="inline-flex items-center gap-2 bg-[#c9a961] text-white px-7 py-3 rounded-full text-sm font-medium tracking-wider uppercase shadow">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Speisekarte öffnen
+                  </span>
+                </a>
+              ) : (
+                <div className="w-full h-[400px] sm:h-[500px] md:h-[650px] bg-gray-50">
+                  <iframe
+                    src={`${menu.file}#toolbar=0&navpanes=0&scrollbar=0`}
+                    className="w-full h-full"
+                    title={menu.title}
+                  />
+                </div>
+              )}
 
               {/* Card Footer */}
               <div className="p-4 md:p-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
