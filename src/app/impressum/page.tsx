@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Impressum",
-  description: "Impressum des Restaurant Portocervo in Saarlouis – Angaben gemäß § 5 TMG.",
+  description: "Impressum des Restaurant Portocervo in Saarlouis – Angaben gemäß § 5 DDG.",
   robots: { index: true, follow: true },
 };
 
@@ -26,7 +26,7 @@ export default function Impressum() {
         <div className="space-y-10 text-gray-700 leading-relaxed">
 
           <section>
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Angaben gemäß § 5 TMG</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-3">Angaben gemäß § 5 DDG</h2>
             <p>
               Porto Cervo Saarlouis<br />
               Inh. Behar Dura<br />
@@ -45,7 +45,7 @@ export default function Impressum() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-3">Redaktionell verantwortlich gemäß § 18 Abs. 2 MStV</h2>
             <p>
               Behar Dura<br />
               Lothringer Str. 1<br />
@@ -54,22 +54,7 @@ export default function Impressum() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">EU-Streitschlichtung</h2>
-            <p>
-              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{" "}
-              <a
-                href="https://ec.europa.eu/consumers/odr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#c9a961] hover:underline"
-              >
-                https://ec.europa.eu/consumers/odr/
-              </a>
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Verbraucherstreitbeilegung</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-3">Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
             <p>
               Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
               Verbraucherschlichtungsstelle teilzunehmen.
@@ -79,8 +64,8 @@ export default function Impressum() {
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mb-3">Haftung für Inhalte</h2>
             <p>
-              Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
-              allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
+              Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den
+              allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
               verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
               zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
             </p>
