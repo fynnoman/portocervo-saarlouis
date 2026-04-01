@@ -112,26 +112,84 @@ export default function AdminEditorPage() {
       setLoggedIn(true);
       sessionStorage.setItem(ADMIN_PASSWORD_KEY, password);
       // Aktuellen Content laden
-      fetch('/api/content').then(r => r.json()).then(setContent).catch(() => {});
+      loadContent();
     } else {
       setLoginError('Falsches Passwort.');
     }
   };
 
+  const loadContent = () => {
+    fetch('/api/content', { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => setContent({
+        ...DEFAULT_CONTENT,
+        ...data,
+        hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
+        experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
+        services: { ...DEFAULT_CONTENT.services, ...data.services },
+        about: { ...DEFAULT_CONTENT.about, ...data.about },
+        openingHours: { ...DEFAULT_CONTENT.openingHours, ...data.openingHours },
+        lunchMenu: { ...DEFAULT_CONTENT.lunchMenu, ...data.lunchMenu },
+        events: { ...DEFAULT_CONTENT.events, ...data.events },
+        liveEvents: { ...DEFAULT_CONTENT.liveEvents, ...data.liveEvents },
+        restaurantImage: { ...DEFAULT_CONTENT.restaurantImage, ...data.restaurantImage },
+        footer: { ...DEFAULT_CONTENT.footer, ...data.footer },
+      }))
+      .catch(() => {});
+  };
+
   useEffect(() => {
     const saved = sessionStorage.getItem(ADMIN_PASSWORD_KEY);
-    if (saved) { setPassword(saved); setLoggedIn(true); fetch('/api/content').then(r => r.json()).then(setContent).catch(() => {}); }
+    if (saved) {
+      // Passwort verifizieren bevor auto-login
+      fetch('/api/admin/files', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: saved }),
+      }).then(res => {
+        if (res.ok) {
+          setPassword(saved);
+          setLoggedIn(true);
+          loadContent();
+        } else {
+          sessionStorage.removeItem(ADMIN_PASSWORD_KEY);
+        }
+      }).catch(() => {
+        sessionStorage.removeItem(ADMIN_PASSWORD_KEY);
+      });
+    }
   }, []);
 
   const save = async () => {
     setSaveState('saving');
-    const res = await fetch('/api/content/save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password, content }),
-    });
-    setSaveState(res.ok ? 'saved' : 'error');
-    if (res.ok) setTimeout(() => setSaveState('idle'), 3000);
+    try {
+      const res = await fetch('/api/content/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, content }),
+      });
+      if (res.ok) {
+        setSaveState('saved');
+        setTimeout(() => setSaveState('idle'), 3000);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        console.error('Save error:', res.status, data);
+        setSaveState('error');
+        setTimeout(() => setSaveState('idle'), 4000);
+        if (res.status === 401) {
+          alert('Passwort ungültig. Bitte neu anmelden.');
+          sessionStorage.removeItem(ADMIN_PASSWORD_KEY);
+          setLoggedIn(false);
+        } else {
+          alert(`Fehler beim Speichern: ${data.error || res.statusText}`);
+        }
+      }
+    } catch (err) {
+      console.error('Save network error:', err);
+      setSaveState('error');
+      setTimeout(() => setSaveState('idle'), 4000);
+      alert('Netzwerkfehler beim Speichern. Bitte Internetverbindung prüfen.');
+    }
   };
 
   // Tiefes Merge-Helper

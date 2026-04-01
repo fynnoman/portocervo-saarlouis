@@ -162,9 +162,24 @@ export async function getContent(): Promise<SiteContent> {
     const { blobs } = await list();
     const blob = blobs.find((b) => b.pathname === CONTENT_FILE);
     if (!blob) return DEFAULT_CONTENT;
-    const res = await fetch(blob.url, { next: { revalidate: 60 } });
+    const res = await fetch(blob.url, { cache: 'no-store' });
     if (!res.ok) return DEFAULT_CONTENT;
-    return await res.json();
+    const data = await res.json();
+    // Merge mit Defaults, damit fehlende Felder nicht crashen
+    return {
+      ...DEFAULT_CONTENT,
+      ...data,
+      hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
+      experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
+      services: { ...DEFAULT_CONTENT.services, ...data.services },
+      about: { ...DEFAULT_CONTENT.about, ...data.about },
+      openingHours: { ...DEFAULT_CONTENT.openingHours, ...data.openingHours },
+      lunchMenu: { ...DEFAULT_CONTENT.lunchMenu, ...data.lunchMenu },
+      events: { ...DEFAULT_CONTENT.events, ...data.events },
+      liveEvents: { ...DEFAULT_CONTENT.liveEvents, ...data.liveEvents },
+      restaurantImage: { ...DEFAULT_CONTENT.restaurantImage, ...data.restaurantImage },
+      footer: { ...DEFAULT_CONTENT.footer, ...data.footer },
+    };
   } catch {
     return DEFAULT_CONTENT;
   }
