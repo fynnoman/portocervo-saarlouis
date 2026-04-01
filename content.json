@@ -1,4 +1,8 @@
 {
+  "announcement": {
+    "enabled": true,
+    "text": "Liebe Gäste,\nwir haben am Karfreitag den 03. April geschlossen.\nWir sind aber ab Samstag den 04. April wieder wie gewohnt für Sie da."
+  },
   "hero": {
     "backgroundImage": "/A35107A5-F986-4680-A2F5-C34B2B38507A.png",
     "subtitle": "Italienische Küche in Saarlouis",
