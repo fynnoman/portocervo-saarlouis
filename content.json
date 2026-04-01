@@ -1,7 +1,7 @@
 {
   "hero": {
     "backgroundImage": "/A35107A5-F986-4680-A2F5-C34B2B38507A.png",
-    "subtitle": "Italienische Küche in Saarlouis",
+    "subtitle": "Italienische Küche in Saarlouissss",
     "address": "Lothringer Str. 1, 66740 Saarlouis",
     "phone": "06831 2747"
   },
@@ -23,8 +23,14 @@
   "services": {
     "title": "Unsere Serviceoptionen",
     "items": [
-      { "title": "Sitzplätze im Freien", "description": "Genießen Sie Ihr Essen in unserem schönen Außenbereich" },
-      { "title": "Speisekarte für Kinder", "description": "Spezielle Gerichte für unsere kleinen Gäste" }
+      {
+        "title": "Sitzplätze im Freien",
+        "description": "Genießen Sie Ihr Essen in unserem schönen Außenbereich"
+      },
+      {
+        "title": "Speisekarte für Kinder",
+        "description": "Spezielle Gerichte für unsere kleinen Gäste"
+      }
     ]
   },
   "about": {
@@ -32,31 +38,84 @@
     "subtitle": "Tradition trifft auf Leidenschaft – Willkommen in unserem italienischen Restaurant",
     "intro": "Im Herzen von Saarlouis servieren wir authentische italienische Küche mit Liebe zum Detail und höchster Qualität.",
     "features": [
-      { "icon": "🥬", "title": "Frische Zutaten", "text": "Wir verwenden nur die besten und frischesten Zutaten für unsere Gerichte" },
-      { "icon": "🍝", "title": "Italienische Tradition", "text": "Unsere Rezepte basieren auf authentischer italienischer Kochkunst" },
-      { "icon": "❤️", "title": "Mit Herz & Seele", "text": "Jedes Gericht wird mit Leidenschaft und Hingabe zubereitet" }
+      {
+        "icon": "🥬",
+        "title": "Frische Zutaten",
+        "text": "Wir verwenden nur die besten und frischesten Zutaten für unsere Gerichte"
+      },
+      {
+        "icon": "🍝",
+        "title": "Italienische Tradition",
+        "text": "Unsere Rezepte basieren auf authentischer italienischer Kochkunst"
+      },
+      {
+        "icon": "❤️",
+        "title": "Mit Herz & Seele",
+        "text": "Jedes Gericht wird mit Leidenschaft und Hingabe zubereitet"
+      }
     ]
   },
   "openingHours": {
     "rows": [
-      { "day": "Dienstag", "hours": "Geschlossen" },
-      { "day": "Mittwoch", "hours": "11:30–14:30, 18:00–22:00" },
-      { "day": "Donnerstag", "hours": "11:30–14:30, 18:00–22:00" },
-      { "day": "Freitag", "hours": "11:30–14:30, 18:00–22:00" },
-      { "day": "Samstag", "hours": "11:30–14:30, 18:00–22:00" },
-      { "day": "Sonntag", "hours": "11:30–14:30, 18:00–22:00" },
-      { "day": "Montag", "hours": "11:30–14:30, 18:00–22:00" }
+      {
+        "day": "Dienstag",
+        "hours": "Geschlossen"
+      },
+      {
+        "day": "Mittwoch",
+        "hours": "11:30–14:30, 18:00–22:00"
+      },
+      {
+        "day": "Donnerstag",
+        "hours": "11:30–14:30, 18:00–22:00"
+      },
+      {
+        "day": "Freitag",
+        "hours": "11:30–14:30, 18:00–22:00"
+      },
+      {
+        "day": "Samstag",
+        "hours": "11:30–14:30, 18:00–22:00"
+      },
+      {
+        "day": "Sonntag",
+        "hours": "11:30–14:30, 18:00–22:00"
+      },
+      {
+        "day": "Montag",
+        "hours": "11:30–14:30, 18:00–22:00"
+      }
     ]
   },
   "lunchMenu": {
     "title": "Unsere Küche",
     "subtitle": "Von der Pizza bis zum Dessert – entdecken Sie die Vielfalt der italienischen Küche",
     "categories": [
-      { "icon": "🍕", "name": "Pizza", "description": "Knuspriger Teig, frische Zutaten, traditionell im Steinofen gebacken" },
-      { "icon": "🍝", "name": "Pasta", "description": "Hausgemachte Nudeln nach authentischen italienischen Rezepten" },
-      { "icon": "🥗", "name": "Salate", "description": "Frische, knackige Salate mit mediterranem Dressing" },
-      { "icon": "🥩", "name": "Fleischgerichte", "description": "Zarte Fleischspezialitäten, meisterhaft zubereitet" },
-      { "icon": "🍰", "name": "Desserts", "description": "Süße Verführungen für den perfekten Abschluss" }
+      {
+        "icon": "🍕",
+        "name": "Pizza",
+        "description": "Knuspriger Teig, frische Zutaten, traditionell im Steinofen gebacken"
+      },
+      {
+        "icon": "🍝",
+        "name": "Pasta",
+        "description": "Hausgemachte Nudeln nach authentischen italienischen Rezepten"
+      },
+      {
+        "icon": "🥗",
+        "name": "Salate",
+        "description": "Frische, knackige Salate mit mediterranem Dressing"
+      },
+      {
+        "icon": "🥩",
+        "name": "Fleischgerichte",
+        "description": "Zarte Fleischspezialitäten, meisterhaft zubereitet"
+      },
+      {
+        "icon": "🍰",
+        "name": "Desserts",
+        "description": "Süße Verführungen für den perfekten Abschluss"
+      }
     ]
   },
   "events": {
@@ -80,9 +139,19 @@
     "title": "Veranstaltungen & Events",
     "backgroundImage": "/631E3DF3-F04F-4DF0-814A-86EF4010F96A_1_201_a.jpeg",
     "items": [
-      { "title": "Live Musik", "description": "Genießen Sie regelmäßig Live-Musik in unserem Restaurant. Lassen Sie sich von italienischen Klängen verzaubern." },
-      { "title": "Italienischer Abend", "description": "Einmal im Monat verwandeln wir unser Restaurant in ein Stück Italien. Authentische Spezialitäten und besondere Atmosphäre.", "highlight": "Jeden ersten Freitag im Monat" },
-      { "title": "Besondere Events", "description": "Von Weinverkostungen bis zu kulinarischen Themenabenden - erleben Sie italienische Kultur hautnah." }
+      {
+        "title": "Live Musik",
+        "description": "Genießen Sie regelmäßig Live-Musik in unserem Restaurant. Lassen Sie sich von italienischen Klängen verzaubern."
+      },
+      {
+        "title": "Italienischer Abend",
+        "description": "Einmal im Monat verwandeln wir unser Restaurant in ein Stück Italien. Authentische Spezialitäten und besondere Atmosphäre.",
+        "highlight": "Jeden ersten Freitag im Monat"
+      },
+      {
+        "title": "Besondere Events",
+        "description": "Von Weinverkostungen bis zu kulinarischen Themenabenden - erleben Sie italienische Kultur hautnah."
+      }
     ]
   },
   "restaurantImage": {
