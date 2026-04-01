@@ -1,6 +1,9 @@
-import { put, list } from '@vercel/blob';
+import contentJson from '../../content.json';
 
-const CONTENT_FILE = 'site-content.json';
+const GITHUB_OWNER = 'fynnoman';
+const GITHUB_REPO = 'portocervo-saarlouis';
+const CONTENT_PATH = 'content.json';
+const BRANCH = 'main';
 
 export interface SiteContent {
   hero: {
@@ -156,39 +159,65 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
 };
 
-export async function getContent(): Promise<SiteContent> {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return DEFAULT_CONTENT;
-  try {
-    const { blobs } = await list();
-    const blob = blobs.find((b) => b.pathname === CONTENT_FILE);
-    if (!blob) return DEFAULT_CONTENT;
-    const res = await fetch(blob.url, { cache: 'no-store' });
-    if (!res.ok) return DEFAULT_CONTENT;
-    const data = await res.json();
-    // Merge mit Defaults, damit fehlende Felder nicht crashen
-    return {
-      ...DEFAULT_CONTENT,
-      ...data,
-      hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
-      experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
-      services: { ...DEFAULT_CONTENT.services, ...data.services },
-      about: { ...DEFAULT_CONTENT.about, ...data.about },
-      openingHours: { ...DEFAULT_CONTENT.openingHours, ...data.openingHours },
-      lunchMenu: { ...DEFAULT_CONTENT.lunchMenu, ...data.lunchMenu },
-      events: { ...DEFAULT_CONTENT.events, ...data.events },
-      liveEvents: { ...DEFAULT_CONTENT.liveEvents, ...data.liveEvents },
-      restaurantImage: { ...DEFAULT_CONTENT.restaurantImage, ...data.restaurantImage },
-      footer: { ...DEFAULT_CONTENT.footer, ...data.footer },
-    };
-  } catch {
-    return DEFAULT_CONTENT;
-  }
+// Content wird direkt aus der JSON-Datei im Repo gelesen (0 API-Calls)
+export function getContent(): SiteContent {
+  const data = contentJson as Partial<SiteContent>;
+  return {
+    ...DEFAULT_CONTENT,
+    ...data,
+    hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
+    experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
+    services: { ...DEFAULT_CONTENT.services, ...data.services },
+    about: { ...DEFAULT_CONTENT.about, ...data.about },
+    openingHours: { ...DEFAULT_CONTENT.openingHours, ...data.openingHours },
+    lunchMenu: { ...DEFAULT_CONTENT.lunchMenu, ...data.lunchMenu },
+    events: { ...DEFAULT_CONTENT.events, ...data.events },
+    liveEvents: { ...DEFAULT_CONTENT.liveEvents, ...data.liveEvents },
+    restaurantImage: { ...DEFAULT_CONTENT.restaurantImage, ...data.restaurantImage },
+    footer: { ...DEFAULT_CONTENT.footer, ...data.footer },
+  };
 }
 
+// Content wird über GitHub API ins Repo committet → Vercel deployed automatisch neu
 export async function saveContent(content: SiteContent): Promise<void> {
-  await put(CONTENT_FILE, JSON.stringify(content, null, 2), {
-    access: 'public',
-    allowOverwrite: true,
-    contentType: 'application/json',
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) throw new Error('GITHUB_TOKEN nicht konfiguriert.');
+
+  // 1. Aktuelle Datei-Info holen (für SHA)
+  const getRes = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CONTENT_PATH}?ref=${BRANCH}`,
+    { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json' } }
+  );
+
+  let sha: string | undefined;
+  if (getRes.ok) {
+    const data = await getRes.json();
+    sha = data.sha;
+  }
+
+  // 2. Datei updaten via GitHub API
+  const body = JSON.stringify({
+    message: 'update: website content via admin editor',
+    content: Buffer.from(JSON.stringify(content, null, 2)).toString('base64'),
+    sha,
+    branch: BRANCH,
   });
+
+  const putRes = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CONTENT_PATH}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body,
+    }
+  );
+
+  if (!putRes.ok) {
+    const err = await putRes.json().catch(() => ({}));
+    throw new Error(`GitHub API Fehler: ${err.message || putRes.statusText}`);
+  }
 }

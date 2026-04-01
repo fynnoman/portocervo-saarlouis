@@ -119,7 +119,7 @@ export default function AdminEditorPage() {
   };
 
   const loadContent = () => {
-    fetch('/api/content', { cache: 'no-store' })
+    fetch('/api/content')
       .then(r => r.json())
       .then(data => setContent({
         ...DEFAULT_CONTENT,
@@ -170,7 +170,7 @@ export default function AdminEditorPage() {
       });
       if (res.ok) {
         setSaveState('saved');
-        setTimeout(() => setSaveState('idle'), 3000);
+        setTimeout(() => setSaveState('idle'), 5000);
       } else {
         const data = await res.json().catch(() => ({}));
         console.error('Save error:', res.status, data);
@@ -232,7 +232,7 @@ export default function AdminEditorPage() {
           <span className="text-2xl">🍽️</span>
           <div>
             <p className="font-medium text-gray-900 text-sm">Website-Editor</p>
-            <p className="text-xs text-gray-500">Porto Cervo · Änderungen werden sofort live</p>
+            <p className="text-xs text-gray-500">Porto Cervo · Änderungen werden nach ~30s live</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -245,7 +245,7 @@ export default function AdminEditorPage() {
               saveState === 'error' ? 'bg-red-500 text-white' :
               'bg-[#c9a961] hover:bg-[#b8963a] text-white'
             }`}>
-            {saveState === 'saving' ? 'Speichert...' : saveState === 'saved' ? '✓ Gespeichert!' : saveState === 'error' ? 'Fehler!' : 'Speichern & Veröffentlichen'}
+            {saveState === 'saving' ? 'Speichert...' : saveState === 'saved' ? '✓ Gespeichert! ~30s bis live' : saveState === 'error' ? 'Fehler!' : 'Speichern & Veröffentlichen'}
           </button>
           <button onClick={() => { sessionStorage.removeItem(ADMIN_PASSWORD_KEY); setLoggedIn(false); }}
             className="text-sm text-gray-400 hover:text-gray-700">Abmelden</button>
@@ -254,7 +254,7 @@ export default function AdminEditorPage() {
 
       <main className="max-w-3xl mx-auto px-4 py-8">
         <div className="bg-blue-50 border border-blue-200 rounded-xl px-5 py-3 mb-6 text-sm text-blue-700">
-          <strong>Hinweis:</strong> Klicken Sie nach Ihren Änderungen auf <strong>„Speichern & Veröffentlichen"</strong> — die Website wird sofort aktualisiert.
+          <strong>Hinweis:</strong> Klicken Sie nach Ihren Änderungen auf <strong>„Speichern & Veröffentlichen"</strong> — die Website wird innerhalb von ca. 30–60 Sekunden aktualisiert.
         </div>
 
         {/* HERO */}
@@ -560,7 +560,7 @@ export default function AdminEditorPage() {
               saveState === 'error' ? 'bg-red-500 text-white' :
               'bg-[#c9a961] hover:bg-[#b8963a] text-white'
             }`}>
-            {saveState === 'saving' ? 'Speichert...' : saveState === 'saved' ? '✓ Gespeichert!' : 'Speichern & Veröffentlichen'}
+            {saveState === 'saving' ? 'Speichert...' : saveState === 'saved' ? '✓ Gespeichert! ~30s bis live' : 'Speichern & Veröffentlichen'}
           </button>
         </div>
       </main>
