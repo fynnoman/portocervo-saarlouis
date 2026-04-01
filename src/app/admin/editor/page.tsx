@@ -124,6 +124,7 @@ export default function AdminEditorPage() {
       .then(data => setContent({
         ...DEFAULT_CONTENT,
         ...data,
+        announcement: { ...DEFAULT_CONTENT.announcement, ...data.announcement },
         hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
         experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
         services: { ...DEFAULT_CONTENT.services, ...data.services },
@@ -256,6 +257,32 @@ export default function AdminEditorPage() {
         <div className="bg-blue-50 border border-blue-200 rounded-xl px-5 py-3 mb-6 text-sm text-blue-700">
           <strong>Hinweis:</strong> Klicken Sie nach Ihren Änderungen auf <strong>„Speichern & Veröffentlichen"</strong> — die Website wird innerhalb von ca. 30–60 Sekunden aktualisiert.
         </div>
+
+        {/* ANKÜNDIGUNG */}
+        <SectionCard title="Ankündigung / Hinweis" icon="📢">
+          <div className="mb-4">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <div className={`relative w-12 h-7 rounded-full transition-colors ${content.announcement?.enabled ? 'bg-[#c9a961]' : 'bg-gray-200'}`}
+                onClick={() => set('announcement', { enabled: !content.announcement?.enabled, text: content.announcement?.text || '' })}>
+                <div className={`absolute top-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform ${content.announcement?.enabled ? 'translate-x-5' : 'translate-x-0.5'}`} />
+              </div>
+              <span className="text-sm font-medium text-gray-700">
+                {content.announcement?.enabled ? 'Ankündigung wird angezeigt' : 'Ankündigung ist ausgeblendet'}
+              </span>
+            </label>
+          </div>
+          <div className="mb-2">
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Nachricht</label>
+            <textarea
+              value={content.announcement?.text || ''}
+              onChange={(e) => set('announcement', { enabled: content.announcement?.enabled ?? false, text: e.target.value })}
+              rows={4}
+              placeholder="z.B. Wir haben Karfreitag (18.04.) geschlossen. Wir wünschen frohe Ostern! 🐣"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#c9a961] resize-y"
+            />
+          </div>
+          <p className="text-xs text-gray-400">Tipp: Wird als goldenes Banner oben auf der Website angezeigt. Zeilenumbrüche sind möglich.</p>
+        </SectionCard>
 
         {/* HERO */}
         <SectionCard title="Startseite (Hero)" icon="🏠">

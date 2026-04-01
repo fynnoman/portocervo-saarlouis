@@ -6,6 +6,10 @@ const CONTENT_PATH = 'content.json';
 const BRANCH = 'main';
 
 export interface SiteContent {
+  announcement: {
+    enabled: boolean;
+    text: string;
+  };
   hero: {
     backgroundImage: string;
     subtitle: string;
@@ -61,6 +65,10 @@ export interface SiteContent {
 }
 
 export const DEFAULT_CONTENT: SiteContent = {
+  announcement: {
+    enabled: false,
+    text: '',
+  },
   hero: {
     backgroundImage: '/A35107A5-F986-4680-A2F5-C34B2B38507A.png',
     subtitle: 'Italienische Küche in Saarlouis',
@@ -165,6 +173,7 @@ export function getContent(): SiteContent {
   return {
     ...DEFAULT_CONTENT,
     ...data,
+    announcement: { ...DEFAULT_CONTENT.announcement, ...data.announcement },
     hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
     experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
     services: { ...DEFAULT_CONTENT.services, ...data.services },

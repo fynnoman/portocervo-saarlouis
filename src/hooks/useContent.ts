@@ -7,6 +7,7 @@ function mergeContent(data: Partial<SiteContent>): SiteContent {
   return {
     ...DEFAULT_CONTENT,
     ...data,
+    announcement: { ...DEFAULT_CONTENT.announcement, ...data.announcement },
     hero: { ...DEFAULT_CONTENT.hero, ...data.hero },
     experience: { ...DEFAULT_CONTENT.experience, ...data.experience },
     services: { ...DEFAULT_CONTENT.services, ...data.services },

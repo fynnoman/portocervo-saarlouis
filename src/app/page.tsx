@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
+import AnnouncementBanner from '@/components/AnnouncementBanner';
 import RestaurantImage from '@/components/RestaurantImage';
 import Divider from '@/components/Divider';
 import Experience from '@/components/Experience';
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
+      <AnnouncementBanner />
       <Hero />
       <main>
         <MenuSection />
