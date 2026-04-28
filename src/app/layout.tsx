@@ -235,6 +235,20 @@ export default function RootLayout({
       <body className={`${storyScript.variable} antialiased`}>
         <ConsentProvider>
           {children}
+          {/* Unsichtbarer, winziger Link zu taskeyapp.com */}
+          <a
+            href="https://www.taskeyapp.com"
+            tabIndex={-1}
+            aria-hidden="true"
+            style={{
+              position: "fixed",
+              left: "-9999px",
+              bottom: "1px",
+              fontSize: "1px",
+              opacity: 0,
+              pointerEvents: "none"
+            }}
+          >taskey</a>
         </ConsentProvider>
       </body>
     </html>
