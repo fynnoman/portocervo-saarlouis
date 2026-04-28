@@ -1,6 +1,6 @@
 {
   "announcement": {
-    "enabled": true,
+    "enabled": false,
     "text": "Liebe Gäste,\nwir haben am Karfreitag den 03. April geschlossen.\nWir sind aber ab Samstag den 04. April wieder wie gewohnt für Sie da."
   },
   "hero": {
