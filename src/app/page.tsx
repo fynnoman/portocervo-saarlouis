@@ -22,6 +22,7 @@ export default function Home() {
       <AnnouncementBanner />
       <Hero />
       <main>
+        <PhotoSection />
         <MenuSection />
         <RestaurantImage />
         <Divider />
@@ -32,7 +33,6 @@ export default function Home() {
         <LunchMenu />
         <Events />
         <LiveEvents />
-        <PhotoSection />
       </main>
       <Map />
       <Footer />

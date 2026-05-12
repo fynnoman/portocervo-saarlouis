@@ -12,13 +12,14 @@ export default function PhotoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl shadow-2xl"
+          className="overflow-hidden rounded-2xl shadow-2xl"
         >
           <Image
             src="/PHOTO-2026-05-12-16-23-24.jpg"
             alt="Restaurant Portocervo"
-            fill
-            className="object-cover"
+            width={1200}
+            height={900}
+            className="w-full h-auto"
             quality={90}
           />
         </motion.div>
