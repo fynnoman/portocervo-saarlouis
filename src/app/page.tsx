@@ -11,6 +11,7 @@ import Events from '@/components/Events';
 import LunchMenu from '@/components/LunchMenu';
 import LiveEvents from '@/components/LiveEvents';
 import MenuSection from '@/components/MenuSection';
+import PhotoSection from '@/components/PhotoSection';
 import Map from '@/components/Map';
 import Footer from '@/components/Footer';
 
@@ -31,6 +32,7 @@ export default function Home() {
         <LunchMenu />
         <Events />
         <LiveEvents />
+        <PhotoSection />
       </main>
       <Map />
       <Footer />
