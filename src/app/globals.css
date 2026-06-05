@@ -79,11 +79,13 @@ body::before {
   background-size: 240px 240px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--ink);
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
 }
 
 .font-script { font-family: var(--font-script); }
