@@ -17,88 +17,86 @@ export default function Experience() {
     }, 5000);
     return () => clearInterval(timer);
   }, [images.length]);
+
   return (
-    <section id="experience" className="relative overflow-hidden bg-gray-100">
-      {/* Decorative Elements */}
+    <section id="experience" className="relative overflow-hidden bg-paper-deep">
+      {/* Atmosphere */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 0.08, scale: 1 }}
+        whileInView={{ opacity: 0.45, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5 }}
-        className="absolute top-0 right-0 w-64 h-64 bg-[#c9a961] rounded-full blur-3xl"
+        className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(closest-side, rgba(201,169,97,0.55), transparent)' }}
       />
       <motion.div
         initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 0.1, x: 0 }}
+        whileInView={{ opacity: 0.35, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
-        className="absolute bottom-0 right-1/4 w-1 h-32 bg-[#c9a961]"
+        className="absolute bottom-0 left-0 w-[420px] h-[420px] rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(closest-side, rgba(196,98,58,0.5), transparent)' }}
       />
 
-      {/* Mobile: stack vertically. Desktop: side-by-side */}
-      <div className="flex flex-col md:flex-row md:min-h-[60vh]">
-        {/* Left Side - Image with elegant frame */}
-        <div className="w-full md:w-1/2 h-64 sm:h-80 md:h-auto p-8 md:p-12 lg:p-16">
+      <div className="flex flex-col md:flex-row md:min-h-[72vh] relative z-10">
+        {/* Image */}
+        <div className="w-full md:w-1/2 h-72 sm:h-96 md:h-auto p-8 md:p-14 lg:p-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
             className="relative w-full h-full group"
           >
-            {/* Decorative frame */}
-            <div className="absolute -inset-4 border-2 border-[#c9a961] opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-            <div className="absolute -inset-2 border border-[#c9a961] opacity-10 group-hover:opacity-20 transition-opacity duration-500" />
-            
-            {/* Corner accents */}
+            {/* Frames */}
+            <div className="absolute -inset-4 border border-[var(--ochre)]/40 group-hover:border-[var(--ochre)]/70 transition-colors duration-500" />
+            <div className="absolute -inset-2 border border-[var(--terracotta)]/30 group-hover:border-[var(--terracotta)]/60 transition-colors duration-500" />
+
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="absolute -top-3 -left-3 w-12 h-12 border-t-4 border-l-4 border-[#c9a961] z-10"
+              className="absolute -top-3 -left-3 w-12 h-12 border-t-2 border-l-2 border-[var(--terracotta)] z-10"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="absolute -bottom-3 -right-3 w-12 h-12 border-b-4 border-r-4 border-[#c9a961] z-10"
+              className="absolute -bottom-3 -right-3 w-12 h-12 border-b-2 border-r-2 border-[var(--terracotta)] z-10"
             />
 
-            {/* Image Slideshow */}
-            <div className="relative w-full h-full overflow-hidden rounded-sm shadow-2xl">
+            <div className="relative w-full h-full overflow-hidden shadow-[0_40px_70px_-20px_rgba(30,26,20,0.55)]">
               <AnimatePresence mode="wait">
                 {images[currentIndex] && (
                   <motion.div
                     key={currentIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0, scale: 1.06 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 1 }}
                     className="absolute inset-0"
                   >
                     <Image
                       src={images[currentIndex]}
                       alt={`Italienische Küche ${currentIndex + 1}`}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover"
                       priority={currentIndex === 0}
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
-              {/* Subtle overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#c9a961]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Dot indicators */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/45 via-transparent to-transparent" />
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
                 {images.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentIndex(i)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      i === currentIndex ? 'bg-white w-5' : 'bg-white/50'
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === currentIndex ? 'bg-[var(--shell)] w-6' : 'bg-[var(--shell)]/45 w-1.5'
                     }`}
                     aria-label={`Bild ${i + 1}`}
                   />
@@ -108,49 +106,69 @@ export default function Experience() {
           </motion.div>
         </div>
 
-        {/* Right Side - Content */}
-        <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-16 py-10 md:py-16 lg:py-20">
+        {/* Content */}
+        <div className="w-full md:w-1/2 flex items-center px-6 md:px-12 lg:px-20 py-12 md:py-20">
           <div className="max-w-xl">
-            {/* Decorative Quote Mark */}
+            <motion.span
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center gap-3 font-sans text-[0.65rem] tracking-villa uppercase text-[var(--terracotta-deep)] mb-6"
+            >
+              <span className="h-px w-10 bg-[var(--ochre)]" />
+              Esperienza Culinaria
+            </motion.span>
+
             <motion.div
-              initial={{ scale: 0, rotate: -180 }}
+              initial={{ scale: 0, rotate: -10 }}
               whileInView={{ scale: 1, rotate: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-[#c9a961] text-6xl md:text-7xl lg:text-8xl font-serif leading-none mb-4 md:mb-6 opacity-30"
+              className="font-serif text-[6rem] md:text-[8rem] text-[var(--terracotta)]/25 leading-none mb-2"
+              aria-hidden
             >
-              "
+              &ldquo;
             </motion.div>
 
             <motion.h2
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-800 mb-6 md:mb-8"
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[var(--ink)] leading-tight mb-6"
             >
               {content.experience.title}
-              <span className="block text-[#c9a961] mt-2">{content.experience.titleAccent}</span>
+              <span className="block italic text-[var(--terracotta)] mt-2">{content.experience.titleAccent}</span>
             </motion.h2>
 
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 leading-relaxed mb-6 md:mb-8"
+              transition={{ duration: 0.7, delay: 0.55 }}
+              className="font-sans text-base md:text-lg lg:text-xl text-[var(--stone)] leading-relaxed mb-8"
             >
               {content.experience.text}
             </motion.p>
 
-            {/* Decorative Line */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="h-px bg-gradient-to-r from-[#c9a961] to-transparent w-full md:w-3/4 origin-left"
+              transition={{ duration: 1, delay: 0.7 }}
+              className="h-px bg-gradient-to-r from-[var(--terracotta)] via-[var(--ochre)] to-transparent w-full md:w-4/5 origin-left"
             />
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.85 }}
+              className="font-script text-2xl md:text-3xl text-[var(--ochre-deep)] mt-6"
+            >
+              Con amore, dalla cucina
+            </motion.p>
           </div>
         </div>
       </div>

@@ -37,7 +37,6 @@ export default function Navbar() {
     isScrollingRef.current = true;
     setMenuOpen(false);
 
-    // Kurz warten bis Menü animiert ist, dann scrollen
     setTimeout(() => {
       const offset = 70;
       const top = element.getBoundingClientRect().top + window.scrollY - offset;
@@ -50,23 +49,24 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Toggle Button – always visible at top */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <div className="flex justify-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`group flex items-center gap-2 px-5 py-2 rounded-b-xl transition-all duration-300 shadow-md ${
+            className={`group flex items-center gap-3 px-6 py-2.5 rounded-b-2xl transition-all duration-300 shadow-[0_8px_20px_-4px_rgba(0,0,0,0.25)] border-x border-b ${
               menuOpen
-                ? 'bg-white text-[#c9a961]'
-                : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/80 hover:text-[#c9a961]'
+                ? 'bg-[var(--shell)] text-[var(--terracotta)] border-[var(--ochre)]/40'
+                : 'bg-[rgba(30,26,20,0.35)] backdrop-blur-md text-[var(--shell)] hover:bg-[var(--shell)]/95 hover:text-[var(--terracotta)] border-white/20 hover:border-[var(--ochre)]/40'
             }`}
             aria-label="Navigation öffnen"
           >
-            <span className="text-xs font-light uppercase tracking-[0.2em]">Menü</span>
+            <span className="font-script text-base leading-none mt-0.5">Menù</span>
+            <span className="h-3 w-px bg-current opacity-40" />
+            <span className="text-[0.65rem] tracking-villa uppercase font-sans font-medium">Carta</span>
             <motion.svg
               animate={{ rotate: menuOpen ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="w-4 h-4"
+              className="w-3.5 h-3.5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -76,49 +76,62 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Expandable Navigation */}
         <AnimatePresence>
           {menuOpen && (
             <motion.nav
               initial={{ opacity: 0, y: -10, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-100 overflow-hidden"
+              transition={{ duration: 0.32, ease: 'easeInOut' }}
+              className="bg-[var(--shell)]/97 backdrop-blur-md shadow-[0_20px_40px_-10px_rgba(30,26,20,0.25)] border-t border-[var(--ochre)]/25 overflow-hidden"
             >
+              {/* Decorative tile band */}
+              <div
+                className="h-1 w-full"
+                style={{
+                  background:
+                    'repeating-linear-gradient(45deg, var(--ochre) 0 8px, transparent 8px 16px, var(--terracotta) 16px 24px, transparent 24px 32px)',
+                  opacity: 0.55,
+                }}
+              />
+
               {/* Desktop layout */}
-              <div className="hidden md:flex flex-wrap justify-center gap-3 lg:gap-6 max-w-7xl mx-auto px-4 py-4">
-                {navItems.map((item) =>
-                  item.id === 'speisekarten' ? (
-                    <Link
-                      key={item.id}
-                      href="/speisekarten"
-                      onClick={() => setMenuOpen(false)}
-                      className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className="text-gray-700 hover:text-[#c9a961] transition-colors font-light text-xs md:text-sm lg:text-base uppercase tracking-wide whitespace-nowrap"
-                    >
-                      {item.label}
-                    </button>
-                  )
-                )}
+              <div className="hidden md:flex flex-wrap justify-center items-center gap-x-7 gap-y-3 max-w-7xl mx-auto px-4 py-5">
+                {navItems.map((item, idx) => {
+                  const isLast = idx === navItems.length - 1;
+                  return (
+                    <div key={item.id} className="flex items-center gap-7">
+                      {item.id === 'speisekarten' ? (
+                        <Link
+                          href="/speisekarten"
+                          onClick={() => setMenuOpen(false)}
+                          className="font-serif italic text-[var(--ink)] hover:text-[var(--terracotta)] transition-colors text-base lg:text-lg whitespace-nowrap"
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => scrollToSection(item.id)}
+                          className="font-serif italic text-[var(--ink)] hover:text-[var(--terracotta)] transition-colors text-base lg:text-lg whitespace-nowrap"
+                        >
+                          {item.label}
+                        </button>
+                      )}
+                      {!isLast && <span className="w-1 h-1 rounded-full bg-[var(--ochre)]/60" />}
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Mobile layout */}
-              <div className="md:hidden px-4 py-3 grid grid-cols-2 gap-1">
+              <div className="md:hidden px-4 py-4 grid grid-cols-2 gap-1">
                 {navItems.map((item) =>
                   item.id === 'speisekarten' ? (
                     <Link
                       key={item.id}
                       href="/speisekarten"
                       onClick={() => setMenuOpen(false)}
-                      className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
+                      className="text-left px-3 py-2.5 font-serif italic text-[var(--ink)] hover:text-[var(--terracotta)] hover:bg-[var(--parchment)]/70 rounded-md transition-colors text-base"
                     >
                       {item.label}
                     </Link>
@@ -126,7 +139,7 @@ export default function Navbar() {
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className="text-left px-3 py-2.5 text-gray-700 hover:text-[#c9a961] hover:bg-gray-50 rounded-lg transition-colors font-light text-sm uppercase tracking-wide"
+                      className="text-left px-3 py-2.5 font-serif italic text-[var(--ink)] hover:text-[var(--terracotta)] hover:bg-[var(--parchment)]/70 rounded-md transition-colors text-base"
                     >
                       {item.label}
                     </button>

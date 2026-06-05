@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { ConsentProvider } from "@/components/CookieBanner";
 
@@ -7,6 +8,21 @@ const storyScript = localFont({
   src: "../../public/fonts/StoryScript-Regular.ttf",
   variable: "--font-storyscript",
   weight: "400",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -232,7 +248,7 @@ export default function RootLayout({
         <meta name="geo.position" content="49.3134;6.7528" />
         <meta name="ICBM" content="49.3134, 6.7528" />
       </head>
-      <body className={`${storyScript.variable} antialiased`}>
+      <body className={`${storyScript.variable} ${cormorant.variable} ${manrope.variable} antialiased`}>
         <ConsentProvider>
           {children}
           {/* Unsichtbarer, winziger Link zu taskeyapp.com */}

@@ -11,18 +11,16 @@ import Events from '@/components/Events';
 import LunchMenu from '@/components/LunchMenu';
 import LiveEvents from '@/components/LiveEvents';
 import MenuSection from '@/components/MenuSection';
-import PhotoSection from '@/components/PhotoSection';
 import Map from '@/components/Map';
 import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[var(--cream)]">
       <Navbar />
       <AnnouncementBanner />
       <Hero />
       <main>
-        <PhotoSection />
         <MenuSection />
         <RestaurantImage />
         <Divider />

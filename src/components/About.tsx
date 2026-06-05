@@ -6,99 +6,118 @@ import { useContent } from '@/hooks/useContent';
 export default function About() {
   const content = useContent();
   return (
-    <section id="about" className="py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gradient-to-b from-gray-100 via-gray-100 to-gray-100 relative overflow-hidden">
-      {/* Decorative background elements */}
+    <section
+      id="about"
+      className="py-20 md:py-28 px-4 md:px-6 relative overflow-hidden bg-paper"
+    >
+      {/* Glow */}
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 0.03, scale: 1 }}
+        whileInView={{ opacity: 0.5, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 2 }}
-        className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#c9a961] rounded-full blur-3xl"
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(closest-side, rgba(201,169,97,0.35), transparent)' }}
       />
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 0.03, scale: 1 }}
+        whileInView={{ opacity: 0.45, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 2, delay: 0.3 }}
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c9a961] rounded-full blur-3xl"
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(closest-side, rgba(196,98,58,0.35), transparent)' }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 md:mb-12 lg:mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14 md:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-gray-900 mb-3 md:mb-4">
-            {content.about.title}
+          <span className="font-sans text-[0.65rem] tracking-villa uppercase text-[var(--terracotta-deep)]">
+            La Famiglia
+          </span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[var(--ink)] mt-3 mb-4">
+            <span className="italic">{content.about.title}</span>
           </h2>
-          <div className="w-12 md:w-16 h-px bg-[#c9a961] mx-auto mb-4 md:mb-6"></div>
-          <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-px w-12 bg-[var(--ochre)]" />
+            <span className="rotate-45 w-2 h-2 bg-[var(--terracotta)]" />
+            <span className="h-px w-12 bg-[var(--ochre)]" />
+          </div>
+          <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-[var(--stone)] max-w-3xl mx-auto leading-relaxed px-4">
             {content.about.subtitle}
           </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Content Section */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8 text-center"
+            className="space-y-12 text-center"
           >
             <div className="relative">
-              {/* Decorative quote mark */}
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 0.1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 0.18, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="absolute -top-8 left-1/2 -translate-x-1/2 text-9xl text-[#c9a961] font-serif leading-none"
+                transition={{ duration: 0.9 }}
+                className="absolute -top-10 left-1/2 -translate-x-1/2 text-[8rem] md:text-[10rem] text-[var(--terracotta)] font-serif leading-none pointer-events-none"
+                aria-hidden
               >
-                "
+                &ldquo;
               </motion.div>
-              
-              <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed relative z-10 mb-4 md:mb-6 px-4 md:px-0">
+
+              <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-[var(--ink)] leading-relaxed relative z-10 px-4 md:px-0 max-w-3xl mx-auto">
                 {content.about.intro}
               </p>
             </div>
 
-            <div className="space-y-6 max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-10 md:gap-8 max-w-5xl mx-auto pt-4">
               {content.about.features.map((feature, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-                  className="group"
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.12 }}
+                  className="group relative px-4"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-[#c9a961] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-opacity-20 transition-all duration-300">
-                    <span className="text-2xl">{feature.icon}</span>
+                  <div className="relative inline-flex items-center justify-center mx-auto mb-5">
+                    <span className="absolute inset-0 -m-3 border border-[var(--ochre)]/40 rotate-45 group-hover:border-[var(--terracotta)] group-hover:rotate-[60deg] transition-all duration-500" />
+                    <span className="relative w-14 h-14 flex items-center justify-center bg-[var(--shell)] border border-[var(--ochre)]/50 rounded-full text-2xl">
+                      {feature.icon}
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
-                      {feature.text}
-                    </p>
-                  </div>
+                  <h3 className="font-serif text-2xl md:text-3xl text-[var(--ink)] mb-2">{feature.title}</h3>
+                  <p className="font-sans text-sm md:text-base text-[var(--stone)] leading-relaxed">
+                    {feature.text}
+                  </p>
                 </motion.div>
               ))}
             </div>
 
-            {/* Decorative bottom accent */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="h-1 bg-gradient-to-r from-transparent via-[#c9a961] to-transparent origin-center mt-8 max-w-md mx-auto"
+              className="h-px bg-gradient-to-r from-transparent via-[var(--terracotta)] to-transparent origin-center mt-6 max-w-md mx-auto"
             />
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="font-script text-3xl md:text-4xl text-[var(--terracotta)]"
+            >
+              La Dolce Vita
+            </motion.p>
           </motion.div>
         </div>
       </div>

@@ -3,112 +3,109 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
+const cards = [
+  {
+    href: '/speisekarten#mittagstisch',
+    eyebrow: 'Mezzogiorno',
+    title: 'Mittagstisch',
+    italian: 'Pranzo del Giorno',
+    description: 'Täglich wechselnde Mittagsgerichte – schnell, frisch und zu fairen Preisen.',
+    cta: 'Mittagstisch ansehen',
+  },
+  {
+    href: '/speisekarten#speisekarte',
+    eyebrow: 'La Carta',
+    title: 'Speisekarte',
+    italian: 'Tutti i Sapori',
+    description: 'Unsere vollständige Karte – Pizza, Pasta, Pesce, Carne und süße Versuchungen.',
+    cta: 'Speisekarte ansehen',
+  },
+  {
+    href: '/speisekarten#empfehlungskarte',
+    eyebrow: 'Specialità',
+    title: 'Empfehlungskarte',
+    italian: 'Dello Chef',
+    description: 'Unsere aktuellen Empfehlungen – saisonale Highlights und besondere Gerichte.',
+    cta: 'Empfehlungen ansehen',
+  },
+];
+
 export default function MenuSection() {
   return (
-    <section id="speisekarten" className="py-16 md:py-20 bg-white">
-      <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 text-center">
+    <section id="speisekarten" className="relative py-20 md:py-28 bg-paper overflow-hidden">
+      {/* Sun glow */}
+      <div
+        aria-hidden
+        className="absolute -top-32 right-[-10%] w-[520px] h-[520px] rounded-full blur-3xl opacity-50"
+        style={{ background: 'radial-gradient(closest-side, rgba(201,169,97,0.45), transparent)' }}
+      />
+      <div
+        aria-hidden
+        className="absolute bottom-[-20%] left-[-10%] w-[480px] h-[480px] rounded-full blur-3xl opacity-40"
+        style={{ background: 'radial-gradient(closest-side, rgba(196,98,58,0.35), transparent)' }}
+      />
+
+      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          {/* Decorative line */}
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#c9a961]" />
-            <span className="text-[#c9a961] text-sm tracking-[0.3em] uppercase font-light">Porto Cervo</span>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#c9a961]" />
+          <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="h-px w-16 eyebrow-rule" />
+            <span className="font-sans text-[var(--terracotta-deep)] text-[0.65rem] tracking-villa uppercase">
+              Porto Cervo · Saarlouis
+            </span>
+            <div className="h-px w-16 eyebrow-rule" />
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
-            Unsere Speisekarten
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[var(--ink)] mb-3">
+            <span className="italic">Le Nostre</span> Carte
           </h2>
-          <p className="text-gray-500 leading-relaxed max-w-xl mx-auto mb-10">
-            Entdecken Sie unsere authentisch italienische Küche – von klassischen Mittagsgerichten bis hin zu unserer vollständigen Abendkarte.
+          <p className="font-script text-2xl md:text-3xl text-[var(--terracotta)] mb-4">Buon Appetito</p>
+          <p className="font-sans text-[var(--stone)] leading-relaxed max-w-xl mx-auto mb-12 md:mb-14">
+            Entdecken Sie unsere authentisch italienische Küche – von klassischen Mittagsgerichten bis hin zu unserer
+            vollständigen Abendkarte.
           </p>
 
-          {/* Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left flex flex-col group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-10 h-10 mb-4 text-[#c9a961]">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1M4.22 4.22l.707.707m12.02 12.02.708.708M1 12h1m20 0h1M4.22 19.78l.707-.707M18.95 5.636l.707-.707M12 7a5 5 0 100 10A5 5 0 0012 7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">Mittagstisch</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                Täglich wechselnde Mittagsgerichte – schnell, frisch und zu fairen Preisen.
-              </p>
-              <Link
-                href="/speisekarten#mittagstisch"
-                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow hover:shadow-lg self-start"
+          <div className="grid md:grid-cols-3 gap-6 md:gap-7">
+            {cards.map((c, i) => (
+              <motion.div
+                key={c.href}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
+                className="group relative bg-[var(--shell)] border border-[var(--ochre)]/25 p-8 text-left flex flex-col transition-all duration-500 hover:border-[var(--terracotta)]/55 hover:shadow-[0_30px_60px_-25px_rgba(196,98,58,0.45)] hover:-translate-y-1"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                Mittagstisch ansehen
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left flex flex-col group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-10 h-10 mb-4 text-[#c9a961]">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">Speisekarte</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                Unsere vollständige Karte mit Pizza, Pasta, Fleisch- und Fischgerichten sowie Desserts.
-              </p>
-              <Link
-                href="/speisekarten#speisekarte"
-                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow hover:shadow-lg self-start"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                Speisekarte ansehen
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-left flex flex-col group hover:border-[#c9a961]/40 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-10 h-10 mb-4 text-[#c9a961]">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">Empfehlungskarte</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                Unsere aktuellen Empfehlungen – saisonale Highlights und besondere Gerichte.
-              </p>
-              <Link
-                href="/speisekarten#empfehlungskarte"
-                className="inline-flex items-center gap-2 bg-[#c9a961] hover:bg-[#b8963a] text-white px-6 py-3 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 shadow hover:shadow-lg self-start"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                Empfehlungen ansehen
-              </Link>
-            </motion.div>
+                {/* Corner tile */}
+                <span
+                  aria-hidden
+                  className="absolute top-3 right-3 w-2 h-2 rotate-45 bg-[var(--ochre)]/60 group-hover:bg-[var(--terracotta)] transition-colors duration-500"
+                />
+                <span className="font-sans text-[0.6rem] tracking-villa uppercase text-[var(--terracotta)] mb-3">
+                  {c.eyebrow}
+                </span>
+                <h3 className="font-serif text-2xl md:text-3xl text-[var(--ink)] leading-tight">
+                  {c.title}
+                </h3>
+                <p className="font-script text-2xl text-[var(--ochre-deep)] mt-1 mb-4">{c.italian}</p>
+                <p className="font-sans text-[var(--stone)] text-sm leading-relaxed mb-7 flex-1">
+                  {c.description}
+                </p>
+                <Link
+                  href={c.href}
+                  className="inline-flex items-center gap-3 text-[var(--ink)] hover:text-[var(--terracotta)] transition-colors font-sans text-xs tracking-villa uppercase self-start border-b border-[var(--ochre)] pb-1"
+                >
+                  {c.cta}
+                  <span
+                    aria-hidden
+                    className="inline-block w-1.5 h-1.5 bg-[var(--ochre)] rotate-45 group-hover:translate-x-1 transition-transform duration-300"
+                  />
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
