@@ -29,7 +29,8 @@
     "items": [
       {
         "title": "Sitzplätze im Freien",
-        "description": "Genießen Sie Ihr Essen in unserem schönen Außenbereich"
+        "description": "Genießen Sie Ihr Essen in unserem schönen Außenbereich",
+        "icon": "30"
       },
       {
         "title": "Speisekarte für Kinder",
