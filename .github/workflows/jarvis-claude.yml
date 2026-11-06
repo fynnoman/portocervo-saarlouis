@@ -26,10 +26,53 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: anthropics/claude-code-action@v1
+      - id: claude
+        uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           branch_prefix: claude/
           claude_args: |
             --max-turns 20
+
+      # Claude creates a separate branch for issues by design. Merge it after
+      # the action finishes successfully. Never force-push to main.
+      - name: Automatisch nach main übernehmen
+        if: ${{ success() && steps.claude.outputs.conclusion == 'success' && steps.claude.outputs.branch_name != '' }}
+        env:
+          CLAUDE_BRANCH: ${{ steps.claude.outputs.branch_name }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "$CLAUDE_BRANCH" != claude/* ]] || ! git check-ref-format --branch "$CLAUDE_BRANCH"; then
+            echo "Ungültiger Claude-Branch: $CLAUDE_BRANCH"
+            exit 1
+          fi
+
+          git fetch origin \
+            '+refs/heads/main:refs/remotes/origin/main' \
+            "+refs/heads/$CLAUDE_BRANCH:refs/remotes/origin/$CLAUDE_BRANCH"
+
+          if git merge-base --is-ancestor "origin/$CLAUDE_BRANCH" origin/main; then
+            echo "Keine neuen Änderungen für main."
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -B jarvis-auto-merge origin/main
+
+          git merge --no-edit "origin/$CLAUDE_BRANCH"
+
+          # Claude's GitHub App token is no longer suitable for this push.
+          # Use the workflow's write-scoped GITHUB_TOKEN instead.
+          git config --local --unset-all http.https://github.com/.extraheader || true
+          auth_header="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          git -c "http.https://github.com/.extraheader=$auth_header" push origin HEAD:main
+
+          # Delete the work branch only after the push succeeds.
+          git -c "http.https://github.com/.extraheader=$auth_header" push origin --delete "$CLAUDE_BRANCH"
